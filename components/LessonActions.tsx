@@ -3,7 +3,8 @@
 import { Bookmark, Check, Save } from "lucide-react";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import { progressActions, useLearnerState } from "@/lib/progress";
+import { quizzes } from "@/data/quizzes";
+import { MASTERY_THRESHOLD, progressActions, useLearnerState } from "@/lib/progress";
 
 export function LessonActions({ slug }: { slug: string }) {
   const learner = useLearnerState();
@@ -11,6 +12,11 @@ export function LessonActions({ slug }: { slug: string }) {
   const complete = learner.completed.includes(slug);
   const bookmarked = learner.bookmarks.includes(slug);
   const note = draft ?? learner.notes[slug] ?? "";
+  const hasQuiz = Boolean(quizzes[slug]?.length);
+  const bestScore = learner.quizAttempts
+    .filter((attempt) => attempt.lessonSlug === slug && attempt.total > 0)
+    .reduce((best, attempt) => Math.max(best, attempt.score / attempt.total), 0);
+  const mastered = !hasQuiz || bestScore >= MASTERY_THRESHOLD;
 
   useEffect(() => {
     progressActions.visit(slug);
@@ -18,7 +24,8 @@ export function LessonActions({ slug }: { slug: string }) {
 
   return (
     <aside className="space-y-3 lg:sticky lg:top-24">
-      <button type="button" onClick={() => progressActions.toggleComplete(slug)} className={clsx("flex h-11 w-full items-center justify-center gap-2 border text-sm font-semibold", complete ? "border-[#438378] bg-[#21473f] text-[#a6e5db]" : "border-[var(--cyan)] bg-[var(--cyan)] text-[#07110f] hover:bg-[#83e6db]")}> <Check size={17} /> {complete ? "完了済み" : "レッスンを完了"}</button>
+      <button type="button" disabled={!complete && !mastered} onClick={() => progressActions.toggleComplete(slug)} className={clsx("flex min-h-11 w-full items-center justify-center gap-2 border px-3 text-sm font-semibold", complete ? "border-[#438378] bg-[#21473f] text-[#a6e5db]" : mastered ? "border-[var(--cyan)] bg-[var(--cyan)] text-[#07110f] hover:bg-[#83e6db]" : "cursor-not-allowed border-[#3a4246] bg-[#171b1e] text-[#6d787d]")}> <Check size={17} /> {complete ? "完了済み" : mastered ? "レッスンを完了" : "修了判定 80% が必要"}</button>
+      {hasQuiz && <p className="px-1 text-[10px] leading-5 text-[#7b878c]">最高得点: {Math.round(bestScore * 100)}%。本文末の修了判定に合格すると完了できます。</p>}
       <button type="button" onClick={() => progressActions.toggleBookmark(slug)} className={clsx("flex h-10 w-full items-center justify-center gap-2 border text-sm", bookmarked ? "border-[#806b37] bg-[#2a2418] text-[#f0d28a]" : "border-[var(--line)] text-[var(--muted)] hover:text-white")}><Bookmark size={16} fill={bookmarked ? "currentColor" : "none"} /> {bookmarked ? "保存済み" : "ブックマーク"}</button>
       <div className="border border-[var(--line)] bg-[var(--panel)] p-4">
         <label htmlFor="lesson-note" className="text-xs font-semibold text-white">自分のノート</label>

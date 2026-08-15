@@ -18,8 +18,10 @@ import { useLearnerState } from "@/lib/progress";
 export function Dashboard() {
   const learner = useLearnerState();
   const completedCount = learner.completed.length;
-  const progress = Math.round((completedCount / totalLessonCount) * 100);
+  const progress = Math.round((completedCount / availableLessons.length) * 100);
   const lastLesson = availableLessons.find((lesson) => lesson.slug === learner.lastVisited) ?? availableLessons[0];
+  const lastLessonLevel = Number(lastLesson.code[1]);
+  const lastLevel = levels.find((level) => level.level === lastLessonLevel) ?? levels[0];
 
   return (
     <div>
@@ -57,7 +59,7 @@ export function Dashboard() {
       <section className="border-b border-[var(--line)] bg-[#0f1315]">
         <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-[var(--line)] px-5 sm:grid-cols-4 sm:px-8 lg:px-12">
           <Metric icon={CheckCircle2} label="完了" value={`${completedCount} lessons`} />
-          <Metric icon={BarChart3} label="全体進捗" value={`${progress}%`} />
+          <Metric icon={BarChart3} label="公開教材進捗" value={`${progress}%`} />
           <Metric icon={Bookmark} label="ブックマーク" value={`${learner.bookmarks.length}`} />
           <Metric icon={Clock3} label="次の学習" value={`${lastLesson.duration} min`} />
         </div>
@@ -78,9 +80,9 @@ export function Dashboard() {
               <Orbit size={36} strokeWidth={1.2} className="text-[#5fb3aa]" />
             </div>
             <div className="p-5 sm:p-6">
-              <p className="text-xs text-[var(--muted)]">Level 0 · 宇宙への入口</p>
+              <p className="text-xs text-[var(--muted)]">Level {lastLevel.level} · {lastLevel.title}</p>
               <h3 className="mt-2 text-xl font-semibold text-white">{lastLesson.title}</h3>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">地球から宇宙の大規模構造まで、桁の違いを「宇宙の住所」として順番にたどります。</p>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">{lastLevel.description}</p>
             </div>
             <div className="flex items-center justify-between border-t border-[var(--line)] px-5 py-4 md:block md:border-l md:border-t-0 md:p-6">
               <span className="text-xs text-[var(--muted)]">約 {lastLesson.duration} 分</span>

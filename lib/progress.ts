@@ -20,6 +20,7 @@ export type LearnerState = {
 };
 
 const STORAGE_KEY = "astraea:learner:v1";
+export const MASTERY_THRESHOLD = 0.8;
 const initialState: LearnerState = {
   version: 1,
   completed: [],

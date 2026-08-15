@@ -14,12 +14,15 @@
   "dependencies": {
     "clsx": "latest",
     "gray-matter": "latest",
+    "katex": "^0.18.4",
     "lucide-react": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-markdown": "latest",
-    "remark-gfm": "latest"
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "latest",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.62.1",

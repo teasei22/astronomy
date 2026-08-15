@@ -6,6 +6,7 @@ import { availableLessons } from "@/data/curriculum";
 import { GlossaryTerm } from "@/components/GlossaryTerm";
 import { LayerStack } from "@/components/LayerStack";
 import { LessonActions } from "@/components/LessonActions";
+import { LessonInteractive } from "@/components/LessonInteractive";
 import { LessonSection } from "@/components/LessonSection";
 import { QuizBlock } from "@/components/QuizBlock";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -75,6 +76,8 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
             ))}
             {layerInsertAt >= regular.length && layers.length > 0 && <LayerStack layers={layers} />}
           </div>
+
+          <LessonInteractive slug={slug} />
 
           <section className="border-y border-[var(--line)] py-7">
             <p className="text-[10px] font-semibold text-[#7d898f]">KEY TERMS · TAP OR HOVER</p>

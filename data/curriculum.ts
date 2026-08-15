@@ -137,6 +137,9 @@ export const availableLessons: LessonSummary[] = [
   { slug: "how-astronomy-knows", code: "L0-14", title: "触れずに、なぜ分かる？", duration: 20, availability: "available" },
   { slug: "map-of-astronomy", code: "L1-01", title: "天文学の全体地図", duration: 17, availability: "available" },
   { slug: "history-of-evidence", code: "L1-09", title: "観測が宇宙観を変えた", duration: 19, availability: "available" },
+  { slug: "angular-measurement", code: "M2-01", title: "角度で宇宙を測る", duration: 50, availability: "available" },
+  { slug: "parallax-distance", code: "L2-04", title: "年周視差から距離を測る", duration: 60, availability: "available" },
+  { slug: "measurement-uncertainty", code: "M2-02", title: "測定誤差と推定", duration: 70, availability: "available" },
 ];
 
 export const totalLessonCount = levels.reduce((sum, level) => sum + level.lessonCount, 0);

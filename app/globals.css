@@ -113,6 +113,34 @@ a {
   padding: 0;
 }
 
+.prose-lesson table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.prose-lesson th,
+.prose-lesson td {
+  border: 1px solid #30383d;
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.prose-lesson th {
+  background: #101416;
+  color: #fff;
+  font-size: 0.75rem;
+}
+
+.prose-lesson .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.35rem 0;
+}
+
 .range-track {
   appearance: none;
   width: 100%;

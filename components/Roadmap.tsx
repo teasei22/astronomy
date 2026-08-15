@@ -10,6 +10,8 @@ import { useLearnerState } from "@/lib/progress";
 export function Roadmap() {
   const learner = useLearnerState();
   const [openLevel, setOpenLevel] = useState(0);
+  const currentLesson = availableLessons.find((lesson) => lesson.slug === learner.lastVisited);
+  const currentLevel = currentLesson ? Number(currentLesson.code[1]) : 0;
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
@@ -20,9 +22,9 @@ export function Roadmap() {
       </div>
 
       <div className="mt-10 grid gap-3 sm:grid-cols-3">
-        <Summary label="現在地" value={`Level ${learner.completed.length ? 0 : 0}`} />
-        <Summary label="完了" value={`${learner.completed.length} / ${totalLessonCount}`} />
-        <Summary label="設計到達点" value="学部基礎 + 研究入門" />
+        <Summary label="現在地" value={"Level " + currentLevel} />
+        <Summary label="公開済み" value={availableLessons.length + " / " + totalLessonCount} />
+        <Summary label="修了条件" value="判定 80% + 演習" />
       </div>
 
       <div className="relative mt-10">
@@ -30,7 +32,7 @@ export function Roadmap() {
         <div className="space-y-4">
           {levels.map((level) => {
             const open = openLevel === level.level;
-            const activeLessons = level.level <= 1 ? availableLessons.filter((lesson) => Number(lesson.code[1]) === level.level) : [];
+            const activeLessons = availableLessons.filter((lesson) => Number(lesson.code[1]) === level.level);
             return (
               <section id={`level-${level.level}`} key={level.level} className="relative scroll-mt-24 pl-14 sm:pl-20">
                 <button

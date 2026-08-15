@@ -1,8 +1,10 @@
 import ReactMarkdown from "react-markdown";
+import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 
 export function MarkdownBody({ markdown }: { markdown: string }) {
-  return <div className="prose-lesson"><ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown></div>;
+  return <div className="prose-lesson"><ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>{markdown}</ReactMarkdown></div>;
 }
 
 export function LessonSection({ title, markdown, index }: { title: string; markdown: string; index: number }) {
