@@ -86,9 +86,13 @@ export function Roadmap() {
                     <div className="mt-7 border-t border-[var(--line)] pt-6">
                       <p className="mb-4 text-[10px] font-semibold text-[#738087]">COURSE STRUCTURE</p>
                       <div className="grid gap-6 md:grid-cols-2">
-                      {level.courses.map((course, courseIndex) => (
-                        <div key={course.title}>
-                          <p className="text-xs font-semibold text-white">Course {level.level}{String.fromCharCode(65 + courseIndex)} · {course.title}</p>
+                      {level.courses.map((course, courseIndex) => {
+                        const published = course.lessonCodes?.filter((code) => activeLessons.some((lesson) => lesson.code === code)).length;
+                        return <div key={course.title}>
+                          <div className="flex items-start justify-between gap-3">
+                            <p className="text-xs font-semibold text-white">Course {level.level}{String.fromCharCode(65 + courseIndex)} · {course.title}</p>
+                            {published !== undefined && course.lessonCodes && <span className="shrink-0 font-mono text-[10px]" style={{ color: published === course.lessonCodes.length ? level.accent : "#89959a" }}>{published}/{course.lessonCodes.length} 公開</span>}
+                          </div>
                           <div className="mt-3 space-y-2">
                             {course.modules.map((module) => (
                               <div key={module} className="flex items-center gap-2 text-sm text-[var(--muted)]">
@@ -96,8 +100,8 @@ export function Roadmap() {
                               </div>
                             ))}
                           </div>
-                        </div>
-                      ))}
+                        </div>;
+                      })}
                       </div>
                     </div>
                     {activeLessons.length > 0 ? (

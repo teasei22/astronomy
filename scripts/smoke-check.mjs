@@ -8,6 +8,27 @@ try {
   const browserErrors = [];
   page.on("pageerror", (error) => browserErrors.push(error.message));
 
+  const newCourseLessons = [
+    ["where-space-begins", "宇宙はどこから始まる？"],
+    ["earth-moon-sun-scale", "地球・月・太陽を同じ縮尺にする"],
+    ["edge-of-solar-system", "太陽系はどこまで続く？"],
+    ["sun-is-a-star", "太陽も一つの恒星である"],
+    ["galaxy-groups-and-cosmic-web", "銀河群・銀河団・宇宙の網"],
+  ];
+  for (const [slug, title] of newCourseLessons) {
+    await page.goto(`http://localhost:3000/learn/${slug}`, { waitUntil: "networkidle" });
+    await page.getByRole("heading", { name: title, exact: true }).waitFor();
+    await page.getByText("PREDICT FIRST", { exact: true }).waitFor();
+    await page.getByRole("heading", { name: "練習問題の解答", exact: true }).waitFor();
+    await page.getByRole("heading", { name: "発展問題の解答", exact: true }).waitFor();
+    await page.locator("section[aria-labelledby='lesson-glossary-title']").waitFor();
+    await page.getByRole("button", { name: "採点する" }).waitFor();
+  }
+  await page.goto("http://localhost:3000/learn/where-space-begins", { waitUntil: "networkidle" });
+  const firstLessonGlossary = page.locator("section[aria-labelledby='lesson-glossary-title']");
+  await firstLessonGlossary.getByText("カーマン・ライン", { exact: true }).waitFor();
+  await firstLessonGlossary.getByText("空気抵抗", { exact: true }).waitFor();
+
   await page.goto("http://localhost:3000/learn/cosmic-address", { waitUntil: "networkidle" });
   const experience = page.locator("section").filter({ hasText: "PREDICT FIRST" }).first();
   await experience.getByRole("button", { name: /太陽系/ }).click();
@@ -75,6 +96,8 @@ try {
   await page.getByRole("link", { name: /光年/ }).first().waitFor();
 
   await page.goto("http://localhost:3000/roadmap", { waitUntil: "networkidle" });
+  await page.getByText("14 教材", { exact: true }).waitFor();
+  await page.getByText("6/6 公開", { exact: true }).waitFor();
   await page.locator("#level-4 > button").click();
   await page.getByText("HR図を読み、恒星の色・温度・光度・半径の関係を説明できる", { exact: true }).waitFor();
   await page.getByText("数学: 対数・指数関数・微分", { exact: true }).waitFor();
@@ -84,7 +107,7 @@ try {
   await page.getByRole("heading", { name: "ASTRAEAが「学部相当」と呼ぶ条件" }).waitFor();
   assert.equal(await page.getByRole("meter", { name: /公開進捗/ }).count(), 8, "roadmap should show publication progress for every level");
 
-  console.log("smoke-check: learning flow, beginner terminology, worked answers, diagnosis, curriculum, progress, and search passed");
+  console.log("smoke-check: Course 0A lessons, learning flow, terminology, answers, diagnosis, curriculum, progress, and search passed");
   await context.close();
 } finally {
   await browser.close();

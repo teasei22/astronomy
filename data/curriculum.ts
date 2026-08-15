@@ -18,7 +18,7 @@ export type LevelSummary = {
   lessonCount: number;
   capabilities: string[];
   prerequisites: { label: string; href?: string; available: boolean }[];
-  courses: { title: string; modules: string[] }[];
+  courses: { title: string; modules: string[]; lessonCodes?: string[] }[];
 };
 
 export const levels: LevelSummary[] = [
@@ -38,9 +38,9 @@ export const levels: LevelSummary[] = [
     ],
     prerequisites: [],
     courses: [
-      { title: "私たちの宇宙住所", modules: ["地球から宇宙へ", "恒星から宇宙へ"] },
-      { title: "距離と時間の感覚", modules: ["宇宙のものさし", "光で過去を見る"] },
-      { title: "最初の科学的な見方", modules: ["見ることから推理する", "最初の誤解をほどく"] },
+      { title: "私たちの宇宙住所", modules: ["地球から宇宙へ", "恒星から宇宙へ"], lessonCodes: ["L0-01", "L0-02", "L0-03", "L0-04", "L0-05", "L0-06"] },
+      { title: "距離と時間の感覚", modules: ["宇宙のものさし", "光で過去を見る"], lessonCodes: ["L0-07", "L0-08", "L0-09", "L0-10", "L0-11", "L0-12"] },
+      { title: "最初の科学的な見方", modules: ["見ることから推理する", "最初の誤解をほどく"], lessonCodes: ["L0-13", "L0-14", "L0-15", "L0-16", "L0-17", "L0-18"] },
     ],
   },
   {
@@ -232,10 +232,15 @@ export const levels: LevelSummary[] = [
 ];
 
 export const availableLessons: LessonSummary[] = [
+  { slug: "where-space-begins", code: "L0-01", title: "宇宙はどこから始まる？", duration: 16, availability: "available" },
+  { slug: "earth-moon-sun-scale", code: "L0-02", title: "地球・月・太陽を同じ縮尺にする", duration: 18, availability: "available" },
+  { slug: "edge-of-solar-system", code: "L0-03", title: "太陽系はどこまで続く？", duration: 19, availability: "available" },
+  { slug: "sun-is-a-star", code: "L0-04", title: "太陽も一つの恒星である", duration: 18, availability: "available" },
   { slug: "cosmic-address", code: "L0-05", title: "宇宙の住所をたどる", duration: 18, availability: "available" },
+  { slug: "galaxy-groups-and-cosmic-web", code: "L0-06", title: "銀河群・銀河団・宇宙の網", duration: 20, availability: "available" },
   { slug: "light-is-a-time-machine", code: "L0-10", title: "光は宇宙のタイムマシン", duration: 14, availability: "available" },
   { slug: "observable-universe", code: "L0-12", title: "観測可能な宇宙とは", duration: 16, availability: "available" },
-  { slug: "how-astronomy-knows", code: "L0-14", title: "触れずに、なぜ分かる？", duration: 20, availability: "available" },
+  { slug: "how-astronomy-knows", code: "L0-14", title: "触れずに、なぜ分かる？", duration: 24, availability: "available" },
   { slug: "map-of-astronomy", code: "L1-01", title: "天文学の全体地図", duration: 17, availability: "available" },
   { slug: "history-of-evidence", code: "L1-09", title: "観測が宇宙観を変えた", duration: 19, availability: "available" },
   { slug: "angular-measurement", code: "M2-01", title: "角度で宇宙を測る", duration: 50, availability: "available" },
