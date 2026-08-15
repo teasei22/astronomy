@@ -11,6 +11,7 @@ try {
   await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
   await page.getByText("START HERE · YOUR COSMIC ADDRESS", { exact: true }).waitFor();
   await page.getByText("学習進捗", { exact: true }).waitFor();
+  await page.getByText("地球から観測可能な宇宙へ。直感から始め、観測・物理・数学・データをつなぎながら、大学学部相当の天文学まで体系的に学びます。", { exact: true }).waitFor();
   assert.equal(await page.getByText("公開教材進捗", { exact: true }).count(), 0, "learner progress should not be labeled as publishing progress");
 
   const courseLessons = [
@@ -23,6 +24,11 @@ try {
     ["parsec-and-prefixes", "pc・kpc・Mpc・Gpcを読む"],
     ["apparent-and-physical-size", "見かけの大きさと本当の大きさ"],
     ["cosmic-history-timeline", "138億年の宇宙史を一本にする"],
+    ["reading-cosmic-signals", "宇宙から届く信号を読む"],
+    ["levels-of-scientific-confidence", "どこまで確かに言える？"],
+    ["light-year-is-distance", "光年は時間ではなく距離"],
+    ["why-earth-has-seasons", "季節を決めるのは距離？"],
+    ["big-bang-without-a-center", "ビッグバンはどこで起きた？"],
   ];
   for (const [slug, title] of courseLessons) {
     await page.goto(`http://localhost:3000/learn/${slug}`, { waitUntil: "networkidle" });
@@ -122,10 +128,10 @@ try {
   await page.getByRole("link", { name: /光年/ }).first().waitFor();
 
   await page.goto("http://localhost:3000/roadmap", { waitUntil: "networkidle" });
-  await page.getByText("18 教材", { exact: true }).waitFor();
+  await page.getByText("23 教材", { exact: true }).waitFor();
   await page.getByText("6/6 公開", { exact: true }).first().waitFor();
-  assert.equal(await page.getByText("6/6 公開", { exact: true }).count(), 2, "Course 0A and 0B should both be complete");
-  await page.getByText("公開 13", { exact: true }).waitFor();
+  assert.equal(await page.getByText("6/6 公開", { exact: true }).count(), 3, "all three Level 0 courses should be complete");
+  await page.getByText("公開 18", { exact: true }).waitFor();
   await page.locator("#level-4 > button").click();
   await page.getByText("HR図を読み、恒星の色・温度・光度・半径の関係を説明できる", { exact: true }).waitFor();
   await page.getByText("数学: 対数・指数関数・微分", { exact: true }).waitFor();
@@ -135,7 +141,7 @@ try {
   await page.getByRole("heading", { name: "ASTRAEAが「学部相当」と呼ぶ条件" }).waitFor();
   assert.equal(await page.getByRole("meter", { name: /公開進捗/ }).count(), 8, "roadmap should show publication progress for every level");
 
-  console.log("smoke-check: Course 0A/0B lessons, dynamic home state, learning flow, terminology, answers, diagnosis, curriculum, progress, and search passed");
+  console.log("smoke-check: all Level 0 courses, dynamic home state, learning flow, terminology, answers, diagnosis, curriculum, progress, and search passed");
   await context.close();
 } finally {
   await browser.close();

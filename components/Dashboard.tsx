@@ -61,7 +61,7 @@ export function Dashboard() {
           <h1 className="max-w-2xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">ASTRAEA</h1>
           <p className="mt-3 max-w-xl text-xl font-medium text-white sm:text-2xl">宇宙を、証拠から学ぶ。</p>
           <p className="mt-4 max-w-lg text-sm leading-7 text-[#c0c8c9] sm:text-base">
-            地球から観測可能な宇宙へ。直感、観測、物理、データを一つの道筋でつなぎ、大学天文学の入口まで進みます。
+            地球から観測可能な宇宙へ。直感から始め、観測・物理・数学・データをつなぎながら、大学学部相当の天文学まで体系的に学びます。
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link href={`/learn/${nextLesson.slug}`} className="inline-flex h-11 items-center gap-2 bg-[var(--cyan)] px-5 text-sm font-semibold text-[#06110f] hover:bg-[#83e6db]">
