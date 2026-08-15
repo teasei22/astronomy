@@ -1,0 +1,110 @@
+# ASTRAEA Project Plan
+
+更新日: 2026-08-15
+
+## 1. プロジェクトの目的
+
+ASTRAEA は、天文学・物理学をほぼ未履修の学習者が、観測事実から考える習慣を身につけ、大学学部の天文学・天体物理学の教科書と研究論文へ到達するためのオンライン教科書兼学習環境である。
+
+到達目標は次の4点で測る。
+
+1. 天文学の主要分野を、観測・モデル・不確実性を区別して説明できる。
+2. 必要な数学・物理を、天文学上の問いに適用できる。
+3. 公開カタログ、光度曲線、スペクトル、画像を Python で扱える。
+4. 論文の Abstract、Figures、Conclusion を読み、主張と根拠の強さを評価できる。
+
+## 2. 教育設計の根拠
+
+大学学部で共通して重視される「物理・数学の基礎」「観測」「計算」「専門天体物理」「研究経験」を骨格とする。
+
+- 東京大学理学部天文学科: 位置天文学・天体力学、銀河天文学、計算天文学、天体観測学、天体輻射論、太陽恒星物理学、星間物理学、恒星進化論、宇宙論、系外惑星、基礎観測・課題研究を配置している。
+- 京都大学理学部宇宙物理学: 概論と観測から、基礎宇宙物理、太陽・恒星・惑星、銀河・星間、観測的宇宙論、計算・観測実習、課題研究へ進む。
+- Harvard Astrophysics: 力学と微積分を前提に、恒星・惑星、銀河・宇宙論、観測実習、研究チュートリアルへ接続する。
+- University of Arizona Astronomy: 力学、電磁気、量子、熱、計算物理を基盤に、観測、恒星、銀河・銀河系外、研究プロジェクトへ進む。
+
+ASTRAEA では、この大学型の順序をそのまま初心者へ要求せず、「知りたい天文現象 → 必要な測定 → 必要な物理・数学 → 定量モデル」の順へ組み替える。
+
+## 3. リリース段階
+
+### Phase 0: Foundation
+
+- 設計文書、全カリキュラム、コンテンツスキーマ
+- Next.js / TypeScript / Tailwind CSS の基盤
+- レスポンシブなアプリシェル、検索、進捗保存
+- Level 0 の代表レッスンと Level 1 の導入
+- 宇宙スケール、宇宙史タイムライン、Python Lab 1
+
+完了条件: 初学者が「宇宙の住所」レッスンを読み、スケール実験を操作し、理解度チェックを記録できる。
+
+### Phase 1: Complete Onboarding
+
+- Level 0 と Level 1 の全レッスン本文
+- 用語 300 語、共通ツールチップ
+- Recall / Concept / Reasoning / Data の問題バンク
+- ノート、ブックマーク、復習キュー、弱点表示
+
+完了条件: 数式なしで宇宙全体の地図を説明し、自分の学習経路を選べる。
+
+### Phase 2: Observation + Foundations
+
+- Level 2 の観測天文学と、必要時学習の数学・物理ブリッジ
+- 天球座標、測光、分光、画像、誤差、S/N の実験
+- 公開データアダプターの契約テスト
+
+完了条件: カタログの基本列、光度曲線、スペクトルの意味を説明できる。
+
+### Phase 3: Objects
+
+- Level 3 太陽系・惑星・系外惑星
+- Level 4 恒星・星間物質・コンパクト天体
+- 軌道、トランジット、黒体、HR 図、スペクトルの操作教材
+
+完了条件: 物理法則から代表的な観測量を予測できる。
+
+### Phase 4: Galaxies + Cosmology
+
+- Level 5 銀河・高エネルギー・マルチメッセンジャー
+- Level 6 宇宙論
+- 回転曲線、重力レンズ、距離梯子、膨張、CMB の証拠連鎖
+
+完了条件: 観測事実とモデル仮定を分けて、現代宇宙像を説明できる。
+
+### Phase 5: Research Practice
+
+- Level 7 放射過程・流体・プラズマ・力学
+- 14 の Astronomy Lab、論文読解、5つの Capstone
+- 実データ取得、キャッシュ、出典・ライセンス表示
+
+完了条件: 再現可能なノートブックと短い研究レポートを提出できる。
+
+## 4. 品質ゲート
+
+各レッスンは公開前に次を満たす。
+
+- 新語は使用前または同時に定義する。
+- 直感 → 現象 → 測定 → 関係 → 数式の順を守る。
+- 観測事実、解釈、モデル、仮説、未解決問題を区別する。
+- 数値には単位、基準時点、典拠、取得日を持たせる。
+- 図には目的、軸、単位、凡例、読み取り方、アクセシブルな代替説明がある。
+- 四種の演習と、誤答がなぜ違うかの説明がある。
+- モバイル 360 px とデスクトップ 1440 px で読める。
+- TypeScript、lint、production build、主要導線のブラウザテストが通る。
+
+## 5. データ戦略
+
+教材本体と外部データ取得を分離する。初期版は出典付きの小規模 JSON / CSV を同梱し、後に同じインターフェースへ NASA Exoplanet Archive TAP、ESA Gaia TAP+、SDSS API、MAST 等のアダプターを接続する。
+
+データ取得時は、配布元、データリリース、クエリ、取得日時、単位、フィルター、引用方法、利用条件をメタデータへ保存する。外部 API 障害時にも教材本文と同梱サンプルは利用できる。
+
+## 6. 公式参照資料
+
+- 東京大学理学部天文学科「カリキュラム（学科）」: https://www.astron.s.u-tokyo.ac.jp/about/undergraduate/
+- 京都大学理学部「コースツリー」: https://sci.kyoto-u.ac.jp/ja/education/undergraduate/divisions
+- Harvard Department of Astronomy, Concentration Requirements: https://astronomy.fas.harvard.edu/concentration-requirements
+- University of Arizona, Four-Year Plan: https://astro.arizona.edu/academics/undergraduate/4-year-plan-astronomy-degree
+- NASA Exoplanet Archive TAP: https://exoplanetarchive.ipac.caltech.edu/docs/TAP/usingTAP.html
+- ESA Gaia Archive: https://gea.esac.esa.int/archive/
+- SDSS Data Access: https://www.sdss.org/dr20/data_access/
+- NASA Images and Media Guidelines: https://www.nasa.gov/nasa-brand-center/images-and-media/
+
+参照確認日: 2026-08-15。年度やデータリリースに依存する記述は、公開前に再確認する。

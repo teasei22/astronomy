@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0b0d0f;
+  --panel: #12161a;
+  --panel-2: #181d21;
+  --line: #2b3238;
+  --text: #f1f4f2;
+  --muted: #9ea9ae;
+  --cyan: #64d8cb;
+  --gold: #f6c85f;
+  --coral: #ef8354;
+  --green: #a7c957;
+  --focus: #a8e6df;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #347d75;
+  color: white;
+}
+
+.scrollbar-thin {
+  scrollbar-color: #495259 transparent;
+  scrollbar-width: thin;
+}
+
+.prose-lesson {
+  color: #d8ddda;
+  font-size: 1rem;
+  line-height: 1.95;
+}
+
+.prose-lesson p {
+  margin: 0 0 1.15rem;
+}
+
+.prose-lesson strong {
+  color: #fff;
+  font-weight: 650;
+}
+
+.prose-lesson ul,
+.prose-lesson ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.4rem;
+}
+
+.prose-lesson li {
+  margin: 0.45rem 0;
+}
+
+.prose-lesson blockquote {
+  margin: 1.5rem 0;
+  border-left: 3px solid var(--gold);
+  background: #171814;
+  padding: 1rem 1.25rem;
+  color: #f3e7c1;
+}
+
+.prose-lesson code {
+  border: 1px solid #30383d;
+  border-radius: 4px;
+  background: #090b0d;
+  padding: 0.12rem 0.35rem;
+  color: #9ee9df;
+}
+
+.prose-lesson pre {
+  overflow-x: auto;
+  border: 1px solid #2a3237;
+  border-radius: 6px;
+  background: #080a0c;
+  padding: 1rem;
+}
+
+.prose-lesson pre code {
+  border: 0;
+  padding: 0;
+}
+
+.range-track {
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: #3a4449;
+}
+
+.range-track::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 4px solid #101417;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 0 1px var(--cyan);
+  cursor: grab;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
