@@ -29,7 +29,7 @@ try {
   await page.getByRole("button", { name: "B 天の川銀河", exact: true }).click();
   await page.getByRole("button", { name: /A 地球 → 太陽系 → 天の川銀河 → 局所銀河群/ }).click();
   await page.getByRole("button", { name: "A すぐ吸い込まれる", exact: true }).click();
-  await page.getByRole("button", { name: "B 10⁵倍", exact: true }).click();
+  await page.getByRole("button", { name: "B 地球と太陽の距離が最も大きい", exact: true }).click();
   await page.getByRole("button", { name: /B 恒星円盤・ガス・暗黒物質など/ }).click();
   await page.getByRole("button", { name: "採点する" }).click();
   await page.getByText("合格です。レッスンを完了できます。").waitFor();
@@ -53,6 +53,17 @@ try {
   assert(state.bookmarks.includes("cosmic-address"), "bookmark was not persisted");
   assert.equal(state.notes["cosmic-address"], "宇宙の階層と距離の桁を復習する");
 
+  await page.goto("http://localhost:3000/learn/how-astronomy-knows", { waitUntil: "networkidle" });
+  await page.getByRole("heading", { name: "触れずに、なぜ分かる？" }).waitFor();
+  await page.getByText("グラフのへこみから、どこまで言える？", { exact: true }).waitFor();
+  await page.getByRole("heading", { name: "練習問題の解答", exact: true }).waitFor();
+  await page.getByRole("heading", { name: "発展問題の解答", exact: true }).waitFor();
+  const lessonGlossary = page.locator("section[aria-labelledby='lesson-glossary-title']");
+  await lessonGlossary.getByText("ナノメートル", { exact: true }).waitFor();
+  await lessonGlossary.getByText("吸収線", { exact: true }).waitFor();
+  await lessonGlossary.getByText("校正", { exact: true }).waitFor();
+  assert.equal(await page.getByText("恒星の明るさが周期的に1%下がりました。", { exact: true }).count(), 0, "unintroduced exoplanet scenario should be removed");
+
   await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
   await page.getByText("1 lessons", { exact: true }).waitFor();
   await page.getByRole("heading", { name: "理解プロフィール" }).waitFor();
@@ -73,7 +84,7 @@ try {
   await page.getByRole("heading", { name: "ASTRAEAが「学部相当」と呼ぶ条件" }).waitFor();
   assert.equal(await page.getByRole("meter", { name: /公開進捗/ }).count(), 8, "roadmap should show publication progress for every level");
 
-  console.log("smoke-check: learning flow, diagnosis, prerequisites, level outcomes, curriculum standard, progress, and search passed");
+  console.log("smoke-check: learning flow, beginner terminology, worked answers, diagnosis, curriculum, progress, and search passed");
   await context.close();
 } finally {
   await browser.close();

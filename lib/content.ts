@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { glossaryById } from "@/data/glossary";
 import { lessonExperiences } from "@/data/lesson-experiences";
 import { quizzes } from "@/data/quizzes";
 import { skillBridges } from "@/data/skill-bridges";
@@ -60,6 +61,12 @@ function validateMeta(data: unknown, file: string): LessonMeta {
       throw new Error(`${file}: invalid source URL ${source.url}`);
     }
   }
+  const glossaryIds = meta.glossaryIds ?? [];
+  const duplicateGlossaryId = glossaryIds.find((id, index) => glossaryIds.indexOf(id) !== index);
+  if (duplicateGlossaryId) throw new Error(`${file}: duplicate glossary id ${duplicateGlossaryId}`);
+  for (const id of glossaryIds) {
+    if (!glossaryById[id]) throw new Error(`${file}: unknown glossary id ${id}`);
+  }
   return meta as LessonMeta;
 }
 
@@ -70,6 +77,9 @@ function validateUniversityContract(meta: LessonMeta, sections: LessonSection[],
     if (questions.length < 5) throw new Error(`${file}: Level 0 lessons require at least 5 diagnostic questions`);
     for (const dimension of ["Recall", "Concept", "Reasoning", "Data"] as const) {
       if (!questions.some((question) => question.type === dimension)) throw new Error(`${file}: Level 0 lesson is missing ${dimension} diagnosis`);
+    }
+    for (const required of ["練習問題", "練習問題の解答", "発展問題", "発展問題の解答"]) {
+      if (!sections.some((section) => section.title === required)) throw new Error(`${file}: Level 0 lesson is missing ${required}`);
     }
   }
   if (meta.level < 2) return;

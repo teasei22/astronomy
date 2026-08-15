@@ -3,10 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clock3 } from "lucide-react";
 import { availableLessons, levels } from "@/data/curriculum";
-import { GlossaryTerm } from "@/components/GlossaryTerm";
 import { LayerStack } from "@/components/LayerStack";
 import { LessonActions } from "@/components/LessonActions";
 import { LessonExperience } from "@/components/LessonExperience";
+import { LessonGlossary } from "@/components/LessonGlossary";
 import { LessonInteractive } from "@/components/LessonInteractive";
 import { LessonSection } from "@/components/LessonSection";
 import { QuizBlock } from "@/components/QuizBlock";
@@ -87,12 +87,7 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
 
           <LessonInteractive slug={slug} />
 
-          <section className="border-y border-[var(--line)] py-7">
-            <p className="text-[10px] font-semibold text-[#7d898f]">KEY TERMS · TAP OR HOVER</p>
-            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-3 text-sm">
-              {meta.glossaryIds.map((id) => <GlossaryTerm key={id} id={id} />)}
-            </div>
-          </section>
+          <LessonGlossary ids={meta.glossaryIds} />
 
           <QuizBlock slug={slug} />
 
