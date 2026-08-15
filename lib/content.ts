@@ -1,7 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { lessonExperiences } from "@/data/lesson-experiences";
 import { quizzes } from "@/data/quizzes";
+import { skillBridges } from "@/data/skill-bridges";
 
 export type ScientificStatus = "Established" | "Strong Evidence" | "Active Research" | "Hypothesis" | "Unknown";
 
@@ -62,7 +64,16 @@ function validateMeta(data: unknown, file: string): LessonMeta {
 }
 
 function validateUniversityContract(meta: LessonMeta, sections: LessonSection[], file: string) {
+  if (meta.level === 0) {
+    const questions = quizzes[meta.slug] ?? [];
+    if (!lessonExperiences[meta.slug]) throw new Error(`${file}: Level 0 lessons require a predict-first experience`);
+    if (questions.length < 5) throw new Error(`${file}: Level 0 lessons require at least 5 diagnostic questions`);
+    for (const dimension of ["Recall", "Concept", "Reasoning", "Data"] as const) {
+      if (!questions.some((question) => question.type === dimension)) throw new Error(`${file}: Level 0 lesson is missing ${dimension} diagnosis`);
+    }
+  }
   if (meta.level < 2) return;
+  if (!skillBridges[meta.slug]) throw new Error(`${file}: Level 2+ lessons require a just-in-time math bridge`);
   if (meta.outcomes.length < 4) throw new Error(`${file}: Level 2+ lessons require at least 4 outcomes`);
   if (meta.sources.length < 2) throw new Error(`${file}: Level 2+ lessons require at least 2 sources`);
   for (const required of ["合格条件", "独力演習", "演習解答"]) {

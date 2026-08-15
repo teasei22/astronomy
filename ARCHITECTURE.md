@@ -23,6 +23,8 @@ app/                 画面とルーティング
 components/          UI、教材ブロック、インタラクティブ実験
 content/level-N/     Markdown レッスン
 data/                カリキュラム、用語、施設、データセット定義
+data/lesson-experiences.ts  本文前の予想・証拠シナリオ
+data/skill-bridges.ts       必要時に開く数学・物理の短い復習
 lib/content/         Markdown の検証と読み込み
 lib/progress/        学習状態リポジトリ
 lib/data-sources/    外部アーカイブ用アダプター
@@ -70,7 +72,7 @@ interface ProgressRepository {
 
 初期実装は `LocalProgressRepository`。将来は Supabase / Postgres 等の `RemoteProgressRepository` を追加し、ログイン時にバージョン付きイベントをマージする。保存キーは `astraea:learner:v1` とし、明示的なマイグレーションを持つ。
 
-弱点は、誤答した問題の `topicIds`、自信度、経過時間から計算する。単に低得点を「苦手」と断定しない。
+各受験は `dimensionScores` と誤答した `reviewTopicIds` を保存する。ホームの理解プロフィールは各教材の最新受験だけを集計し、Recall / Concept / Reasoning / Data の次の復習行動を示す。低得点を固定的な「苦手」と断定しない。
 
 クイズがあるレッスンは、選択式と許容誤差つき数値回答を採点し、80%以上を修了条件とする。完了ボタンだけで習得扱いにしない。Level 2以降は、導出・単位つき計算・データ判断を修了判定へ含める。
 
@@ -134,7 +136,7 @@ type DataEnvelope<T> = {
 - Unit: 単位変換、進捗計算、前提依存、クイズ採点
 - Content: frontmatter、リンク、用語、出典、全 Level のカバレッジ
 - Component: Layer 開閉、検索、保存、キーボード操作
-- E2E: 初回訪問 → レッスン → クイズ → 完了 → ダッシュボード反映
+- E2E: 初回訪問 → 予想 → 証拠の段階表示 → 4軸診断 → 完了 → ダッシュボード反映
 - Visual: 360 / 768 / 1440 px、ライトではなく基本ダークテーマ、200% 拡大
 
 ## 11. 意思決定記録

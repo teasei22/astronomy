@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Check, ChevronDown, Circle, LockKeyhole, Route } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
-import { availableLessons, levels, totalLessonCount } from "@/data/curriculum";
+import { availableLessons, levels } from "@/data/curriculum";
 import { useLearnerState } from "@/lib/progress";
 
 export function Roadmap() {
@@ -18,12 +18,12 @@ export function Roadmap() {
       <div className="max-w-3xl">
         <p className="flex items-center gap-2 text-xs font-semibold text-[var(--cyan)]"><Route size={15} /> LEARNING ROADMAP</p>
         <h1 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">今いる場所と、これから行く場所</h1>
-        <p className="mt-4 text-base leading-8 text-[var(--muted)]">全 {totalLessonCount} レッスン。入口では数式を使わず、観測できる量を増やしながら、物理・数学・データ解析・論文読解へ進みます。</p>
+        <p className="mt-4 text-base leading-8 text-[var(--muted)]">入口では数式を使わず、観測できる量を増やしながら、物理・数学・データ解析・論文読解へ進みます。各段階は学習テストを通した教材から公開します。</p>
       </div>
 
       <div className="mt-10 grid gap-3 sm:grid-cols-3">
         <Summary label="現在地" value={"Level " + currentLevel} />
-        <Summary label="公開済み" value={availableLessons.length + " / " + totalLessonCount} />
+        <Summary label="公開・検証中" value={availableLessons.length + " 教材"} />
         <Summary label="修了条件" value="判定 80% + 演習" />
       </div>
 
@@ -51,7 +51,7 @@ export function Roadmap() {
                       <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{level.description}</p>
                     </div>
                     <div className="flex shrink-0 items-center gap-3">
-                      <span className="hidden text-xs text-[var(--muted)] sm:block">{level.lessonCount} lessons</span>
+                      <span className="hidden text-xs text-[var(--muted)] sm:block">公開 {activeLessons.length}</span>
                       <ChevronDown size={20} className={clsx("text-[#829096] transition-transform", open && "rotate-180")} />
                     </div>
                   </div>

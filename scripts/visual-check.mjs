@@ -9,6 +9,7 @@ const cases = [
   { name: "home-desktop", url: "http://localhost:3000/", viewport: { width: 1440, height: 1000 } },
   { name: "home-mobile", url: "http://localhost:3000/", viewport: { width: 390, height: 844 } },
   { name: "lesson-desktop", url: "http://localhost:3000/learn/cosmic-address", viewport: { width: 1440, height: 1000 } },
+  { name: "lesson-mobile", url: "http://localhost:3000/learn/cosmic-address", viewport: { width: 390, height: 844 } },
   { name: "scale-mobile", url: "http://localhost:3000/explore/scale", viewport: { width: 390, height: 844 } },
 ];
 

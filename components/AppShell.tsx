@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import clsx from "clsx";
-import { availableLessons, totalLessonCount } from "@/data/curriculum";
+import { availableLessons } from "@/data/curriculum";
 import { glossary } from "@/data/glossary";
 
 const navItems = [
@@ -119,15 +119,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </nav>
 
         <div className="border-t border-[var(--line)] p-5">
-          <div className="mb-2 flex items-center justify-between text-xs">
-            <span className="text-[var(--muted)]">公開教材</span>
-            <span className="font-mono text-[var(--cyan)]">{availableLessons.length} / {totalLessonCount}</span>
-          </div>
-          <div className="h-1.5 overflow-hidden bg-[#252c30]">
-            <div className="h-full bg-[var(--cyan)]" style={{ width: Math.max(4, availableLessons.length / totalLessonCount * 100) + "%" }} />
+          <div className="flex items-center justify-between text-xs">
+            <span className="text-[var(--muted)]">検証中の公開教材</span>
+            <span className="font-mono text-[var(--cyan)]">{availableLessons.length}</span>
           </div>
           <Link href="/roadmap" className="mt-3 flex items-center gap-1 text-xs text-[#c2cccf] hover:text-white">
-            全カリキュラムを見る <ChevronRight size={13} />
+            学習経路を見る <ChevronRight size={13} />
           </Link>
         </div>
       </aside>

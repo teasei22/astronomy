@@ -12,8 +12,18 @@ import {
   Orbit,
   Ruler,
 } from "lucide-react";
-import { availableLessons, levels, totalLessonCount } from "@/data/curriculum";
-import { useLearnerState } from "@/lib/progress";
+import { MasteryProfile } from "@/components/MasteryProfile";
+import { availableLessons, levels } from "@/data/curriculum";
+import { type QuizDimension, quizDimensionInfo } from "@/data/quizzes";
+import { type DimensionScore, type QuizAttempt, useLearnerState } from "@/lib/progress";
+
+const dimensions: QuizDimension[] = ["Recall", "Concept", "Reasoning", "Data"];
+const reviewRoutes: Record<QuizDimension, { href: string; label: string }> = {
+  Recall: { href: "/glossary", label: "用語集で定義を再生する" },
+  Concept: { href: "/learn/cosmic-address", label: "直感レイヤーで関係を描き直す" },
+  Reasoning: { href: "/learn/how-astronomy-knows", label: "証拠から推論する練習へ" },
+  Data: { href: "/explore/scale", label: "スケール実験で数値を読む" },
+};
 
 export function Dashboard() {
   const learner = useLearnerState();
@@ -22,6 +32,9 @@ export function Dashboard() {
   const lastLesson = availableLessons.find((lesson) => lesson.slug === learner.lastVisited) ?? availableLessons[0];
   const lastLessonLevel = Number(lastLesson.code[1]);
   const lastLevel = levels.find((level) => level.level === lastLessonLevel) ?? levels[0];
+  const profile = aggregateLatestAttempts(learner.quizAttempts);
+  const weakestDimension = getWeakestDimension(profile);
+  const review = weakestDimension ? reviewRoutes[weakestDimension] : null;
 
   return (
     <div>
@@ -91,6 +104,30 @@ export function Dashboard() {
           </Link>
         </section>
 
+        <section className="mt-14 border-y border-[var(--line)] py-8" aria-labelledby="profile-heading">
+          <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
+            <div>
+              <p className="text-xs font-semibold text-[var(--cyan)]">LEARNING DIAGNOSIS</p>
+              <h2 id="profile-heading" className="mt-1 text-2xl font-semibold text-white">理解プロフィール</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">各レッスンの最新判定から、知識の量ではなく使い方を4軸で見ます。</p>
+              <div className="mt-6 max-w-2xl">
+                {weakestDimension ? <MasteryProfile scores={profile} showAdvice={false} /> : <p className="border-l-2 border-[#3d494e] px-4 py-3 text-sm text-[var(--muted)]">最初の修了判定を受けると、ここに用語・概念・推論・データの強弱が表示されます。</p>}
+              </div>
+            </div>
+            <div className="border-l-2 border-[var(--gold)] bg-[#17160f] px-5 py-4">
+              <p className="text-[10px] font-semibold text-[var(--gold)]">RECOMMENDED REVIEW</p>
+              {review && weakestDimension ? (
+                <>
+                  <p className="mt-2 text-sm font-semibold text-white">{quizDimensionInfo[weakestDimension].label}を補強</p>
+                  <Link href={review.href} className="mt-3 inline-flex items-center gap-2 text-xs text-[#ead387] hover:text-white">{review.label} <ArrowRight size={14} /></Link>
+                </>
+              ) : (
+                <Link href="/learn/cosmic-address" className="mt-3 inline-flex items-center gap-2 text-sm text-[#ead387] hover:text-white">最初の体験へ <ArrowRight size={14} /></Link>
+              )}
+            </div>
+          </div>
+        </section>
+
         <section className="mt-14" aria-labelledby="tools-heading">
           <p className="text-xs font-semibold text-[var(--coral)]">LEARN BY DOING</p>
           <h2 id="tools-heading" className="mt-1 text-2xl font-semibold text-white">読むだけで終わらせない</h2>
@@ -104,14 +141,15 @@ export function Dashboard() {
         <section className="mt-14" aria-labelledby="levels-heading">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold text-[var(--cyan)]">8 LEVELS · {totalLessonCount} LESSONS</p>
+              <p className="text-xs font-semibold text-[var(--cyan)]">8 LEVELS · VALIDATED IN STAGES</p>
               <h2 id="levels-heading" className="mt-1 text-2xl font-semibold text-white">学びの全景</h2>
             </div>
             <p className="hidden max-w-md text-right text-sm leading-6 text-[var(--muted)] lg:block">数学と物理は、必要になる天文学の問いから接続します。</p>
           </div>
           <div className="mt-5 divide-y divide-[var(--line)] border-y border-[var(--line)]">
-            {levels.map((level) => (
-              <Link key={level.level} href={`/roadmap#level-${level.level}`} className="group grid gap-3 py-5 hover:bg-[#111619] sm:grid-cols-[100px_1fr_auto] sm:items-center sm:px-3">
+            {levels.map((level) => {
+              const published = availableLessons.filter((lesson) => Number(lesson.code[1]) === level.level).length;
+              return <Link key={level.level} href={`/roadmap#level-${level.level}`} className="group grid gap-3 py-5 hover:bg-[#111619] sm:grid-cols-[100px_1fr_auto] sm:items-center sm:px-3">
                 <div className="flex items-center gap-3">
                   <span className="grid size-8 place-items-center border text-xs font-bold" style={{ borderColor: level.accent, color: level.accent }}>{level.level}</span>
                   <span className="text-[10px] text-[#6f7a80] sm:hidden">LEVEL</span>
@@ -121,15 +159,38 @@ export function Dashboard() {
                   <p className="mt-1 text-sm text-[var(--muted)]">{level.description}</p>
                 </div>
                 <div className="flex items-center gap-3 text-xs text-[var(--muted)]">
-                  {level.lessonCount} lessons <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  {published ? `公開 ${published}` : "設計中"} <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </div>
-              </Link>
-            ))}
+              </Link>;
+            })}
           </div>
         </section>
       </div>
     </div>
   );
+}
+
+function aggregateLatestAttempts(attempts: QuizAttempt[]) {
+  const latestByLesson = new Map<string, QuizAttempt>();
+  attempts.forEach((attempt) => latestByLesson.set(attempt.lessonSlug, attempt));
+  return [...latestByLesson.values()].reduce<Partial<Record<QuizDimension, DimensionScore>>>((profile, attempt) => {
+    dimensions.forEach((dimension) => {
+      const result = attempt.dimensionScores?.[dimension];
+      if (!result) return;
+      const current = profile[dimension] ?? { score: 0, total: 0 };
+      profile[dimension] = { score: current.score + result.score, total: current.total + result.total };
+    });
+    return profile;
+  }, {});
+}
+
+function getWeakestDimension(profile: Partial<Record<QuizDimension, DimensionScore>>) {
+  const active = dimensions.filter((dimension) => (profile[dimension]?.total ?? 0) > 0);
+  return active.length ? active.reduce((weakest, dimension) => scorePercent(profile[dimension]) < scorePercent(profile[weakest]) ? dimension : weakest) : null;
+}
+
+function scorePercent(result: DimensionScore | undefined) {
+  return result?.total ? result.score / result.total : 0;
 }
 
 function Metric({ icon: Icon, label, value }: { icon: typeof CheckCircle2; label: string; value: string }) {

@@ -1,12 +1,17 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import type { QuizDimension } from "@/data/quizzes";
+
+export type DimensionScore = { score: number; total: number };
 
 export type QuizAttempt = {
   lessonSlug: string;
   score: number;
   total: number;
   topicIds: string[];
+  dimensionScores?: Partial<Record<QuizDimension, DimensionScore>>;
+  reviewTopicIds?: string[];
   attemptedAt: string;
 };
 

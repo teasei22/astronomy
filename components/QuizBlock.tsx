@@ -3,7 +3,9 @@
 import { CheckCircle2, RotateCcw, XCircle } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
-import { type QuizQuestion, quizzes } from "@/data/quizzes";
+import { MasteryProfile } from "@/components/MasteryProfile";
+import { type QuizDimension, type QuizQuestion, quizzes } from "@/data/quizzes";
+import type { DimensionScore } from "@/lib/progress";
 import { MASTERY_THRESHOLD, progressActions } from "@/lib/progress";
 
 type Answer = number | string;
@@ -24,10 +26,16 @@ export function QuizBlock({ slug }: { slug: string }) {
   const score = questions.reduce((sum, question, index) => sum + (isCorrect(question, answers[index]) ? 1 : 0), 0);
   const passed = score / questions.length >= MASTERY_THRESHOLD;
   const allAnswered = questions.every((_, index) => answers[index] !== undefined && answers[index] !== "");
+  const dimensionScores = questions.reduce<Partial<Record<QuizDimension, DimensionScore>>>((results, question, index) => {
+    const current = results[question.type] ?? { score: 0, total: 0 };
+    results[question.type] = { score: current.score + (isCorrect(question, answers[index]) ? 1 : 0), total: current.total + 1 };
+    return results;
+  }, {});
 
   function submit() {
     setSubmitted(true);
-    progressActions.saveQuiz({ lessonSlug: slug, score, total: questions.length, topicIds: [...new Set(questions.flatMap((question) => question.topicIds))], attemptedAt: new Date().toISOString() });
+    const reviewTopicIds = [...new Set(questions.filter((question, index) => !isCorrect(question, answers[index])).flatMap((question) => question.topicIds))];
+    progressActions.saveQuiz({ lessonSlug: slug, score, total: questions.length, topicIds: [...new Set(questions.flatMap((question) => question.topicIds))], dimensionScores, reviewTopicIds, attemptedAt: new Date().toISOString() });
   }
 
   return (
@@ -82,7 +90,13 @@ export function QuizBlock({ slug }: { slug: string }) {
           </div>
         ))}
       </div>
-      {submitted && <div className={clsx("border-t border-[var(--line)] px-5 py-4 text-sm font-semibold", passed ? "bg-[#142520] text-[#a6e5db]" : "bg-[#291915] text-[#e4beb0]")} aria-live="polite">{passed ? "合格です。レッスンを完了できます。" : "未合格です。解説を確認して再挑戦してください。"}</div>}
+      {submitted && (
+        <div className="border-t border-[var(--line)] bg-[#0d1113] p-5 sm:p-6">
+          <p className="mb-4 text-[10px] font-semibold text-[var(--cyan)]">UNDERSTANDING PROFILE</p>
+          <MasteryProfile scores={dimensionScores} />
+        </div>
+      )}
+      {submitted && <div className={clsx("border-t border-[var(--line)] px-5 py-4 text-sm font-semibold", passed ? "bg-[#142520] text-[#a6e5db]" : "bg-[#291915] text-[#e4beb0]")} aria-live="polite">{passed ? "合格です。レッスンを完了できます。" : "未合格です。弱い軸の復習提案を確認して再挑戦してください。"}</div>}
       <div className="flex justify-end border-t border-[var(--line)] p-4">
         {submitted ? <button type="button" onClick={() => { setAnswers({}); setSubmitted(false); }} className="flex h-10 items-center gap-2 border border-[#3e494f] px-4 text-xs text-white"><RotateCcw size={15} /> もう一度</button> : <button type="button" disabled={!allAnswered} onClick={submit} className="h-10 bg-[var(--gold)] px-5 text-xs font-semibold text-[#171307] disabled:cursor-not-allowed disabled:opacity-35">採点する</button>}
       </div>

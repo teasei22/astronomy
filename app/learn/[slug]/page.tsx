@@ -6,9 +6,11 @@ import { availableLessons } from "@/data/curriculum";
 import { GlossaryTerm } from "@/components/GlossaryTerm";
 import { LayerStack } from "@/components/LayerStack";
 import { LessonActions } from "@/components/LessonActions";
+import { LessonExperience } from "@/components/LessonExperience";
 import { LessonInteractive } from "@/components/LessonInteractive";
 import { LessonSection } from "@/components/LessonSection";
 import { QuizBlock } from "@/components/QuizBlock";
+import { SkillBridge } from "@/components/SkillBridge";
 import { StatusBadge } from "@/components/StatusBadge";
 import { getAllLessonSlugs, getLesson } from "@/lib/content";
 
@@ -52,6 +54,8 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
 
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_240px] lg:px-12 lg:py-12">
         <article className="min-w-0">
+          <LessonExperience slug={slug} />
+
           <section className="grid gap-px bg-[var(--line)] border border-[var(--line)] sm:grid-cols-2">
             <div className="bg-[var(--panel)] p-5">
               <p className="text-[10px] font-semibold text-[var(--cyan)]">LEARNING OUTCOMES</p>
@@ -67,11 +71,13 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
             </div>
           </section>
 
+          <SkillBridge slug={slug} />
+
           <div className="mt-2">
             {regular.map((section, index) => (
               <div key={section.title}>
                 {index === layerInsertAt && layers.length > 0 && <LayerStack layers={layers} />}
-                <LessonSection title={section.title} markdown={section.markdown} index={index} />
+                <LessonSection title={section.title} markdown={section.markdown} index={index} collapsible={isOptionalReference(meta.level, section.title)} />
               </div>
             ))}
             {layerInsertAt >= regular.length && layers.length > 0 && <LayerStack layers={layers} />}
@@ -105,4 +111,20 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
       </div>
     </div>
   );
+}
+
+const optionalReferenceTitles = [
+  "図・模式図",
+  "身近なたとえ",
+  "正確な科学的説明",
+  "重要用語",
+  "数学・物理との接続",
+  "実際の宇宙での具体例",
+  "実際の観測データ例",
+  "現在分かっていること",
+  "まだ分かっていないこと",
+];
+
+function isOptionalReference(level: number, title: string) {
+  return level <= 1 && optionalReferenceTitles.includes(title);
 }
