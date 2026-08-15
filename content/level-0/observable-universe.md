@@ -12,7 +12,7 @@ outcomes:
   - 宇宙年齢に光速を掛けただけでは現在の距離にならない理由を説明できる
   - 観測の限界と装置の限界を区別できる
 prerequisites:
-  - 光は宇宙のタイムマシン
+  - 138億年の宇宙史を一本にする
 glossaryIds:
   - observable-universe
   - universe

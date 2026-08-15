@@ -8,14 +8,23 @@ try {
   const browserErrors = [];
   page.on("pageerror", (error) => browserErrors.push(error.message));
 
-  const newCourseLessons = [
+  await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
+  await page.getByText("START HERE · YOUR COSMIC ADDRESS", { exact: true }).waitFor();
+  await page.getByText("学習進捗", { exact: true }).waitFor();
+  assert.equal(await page.getByText("公開教材進捗", { exact: true }).count(), 0, "learner progress should not be labeled as publishing progress");
+
+  const courseLessons = [
     ["where-space-begins", "宇宙はどこから始まる？"],
     ["earth-moon-sun-scale", "地球・月・太陽を同じ縮尺にする"],
     ["edge-of-solar-system", "太陽系はどこまで続く？"],
     ["sun-is-a-star", "太陽も一つの恒星である"],
     ["galaxy-groups-and-cosmic-web", "銀河群・銀河団・宇宙の網"],
+    ["choosing-cosmic-distance-units", "km・AU・光年を使い分ける"],
+    ["parsec-and-prefixes", "pc・kpc・Mpc・Gpcを読む"],
+    ["apparent-and-physical-size", "見かけの大きさと本当の大きさ"],
+    ["cosmic-history-timeline", "138億年の宇宙史を一本にする"],
   ];
-  for (const [slug, title] of newCourseLessons) {
+  for (const [slug, title] of courseLessons) {
     await page.goto(`http://localhost:3000/learn/${slug}`, { waitUntil: "networkidle" });
     await page.getByRole("heading", { name: title, exact: true }).waitFor();
     await page.getByText("PREDICT FIRST", { exact: true }).waitFor();
@@ -28,6 +37,10 @@ try {
   const firstLessonGlossary = page.locator("section[aria-labelledby='lesson-glossary-title']");
   await firstLessonGlossary.getByText("カーマン・ライン", { exact: true }).waitFor();
   await firstLessonGlossary.getByText("空気抵抗", { exact: true }).waitFor();
+  await page.goto("http://localhost:3000/learn/cosmic-history-timeline", { waitUntil: "networkidle" });
+  const timelineGlossary = page.locator("section[aria-labelledby='lesson-glossary-title']");
+  await timelineGlossary.getByText("再結合", { exact: true }).waitFor();
+  await timelineGlossary.getByText("放射年代測定", { exact: true }).waitFor();
 
   await page.goto("http://localhost:3000/learn/cosmic-address", { waitUntil: "networkidle" });
   const experience = page.locator("section").filter({ hasText: "PREDICT FIRST" }).first();
@@ -74,6 +87,13 @@ try {
   assert(state.bookmarks.includes("cosmic-address"), "bookmark was not persisted");
   assert.equal(state.notes["cosmic-address"], "宇宙の階層と距離の桁を復習する");
 
+  await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
+  assert.equal(
+    await page.locator("section[aria-labelledby='continue-heading'] > a").getAttribute("href"),
+    "/learn/where-space-begins",
+    "dashboard should skip a completed last visit and recommend the first incomplete lesson",
+  );
+
   await page.goto("http://localhost:3000/learn/how-astronomy-knows", { waitUntil: "networkidle" });
   await page.getByRole("heading", { name: "触れずに、なぜ分かる？" }).waitFor();
   await page.getByText("グラフのへこみから、どこまで言える？", { exact: true }).waitFor();
@@ -87,6 +107,12 @@ try {
 
   await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
   await page.getByText("1 lessons", { exact: true }).waitFor();
+  await page.getByText("CURRENT LEVEL · LEVEL 0 · UNIVERSE BASICS", { exact: true }).waitFor();
+  assert.equal(
+    await page.locator("section[aria-labelledby='continue-heading'] > a").getAttribute("href"),
+    "/learn/how-astronomy-knows",
+    "dashboard should resume the most recently visited incomplete lesson",
+  );
   await page.getByRole("heading", { name: "理解プロフィール" }).waitFor();
   await page.getByText("推論を補強").waitFor();
   assert.equal(await page.getByRole("meter").count(), 4, "dashboard should aggregate diagnostic dimensions");
@@ -96,8 +122,10 @@ try {
   await page.getByRole("link", { name: /光年/ }).first().waitFor();
 
   await page.goto("http://localhost:3000/roadmap", { waitUntil: "networkidle" });
-  await page.getByText("14 教材", { exact: true }).waitFor();
-  await page.getByText("6/6 公開", { exact: true }).waitFor();
+  await page.getByText("18 教材", { exact: true }).waitFor();
+  await page.getByText("6/6 公開", { exact: true }).first().waitFor();
+  assert.equal(await page.getByText("6/6 公開", { exact: true }).count(), 2, "Course 0A and 0B should both be complete");
+  await page.getByText("公開 13", { exact: true }).waitFor();
   await page.locator("#level-4 > button").click();
   await page.getByText("HR図を読み、恒星の色・温度・光度・半径の関係を説明できる", { exact: true }).waitFor();
   await page.getByText("数学: 対数・指数関数・微分", { exact: true }).waitFor();
@@ -107,7 +135,7 @@ try {
   await page.getByRole("heading", { name: "ASTRAEAが「学部相当」と呼ぶ条件" }).waitFor();
   assert.equal(await page.getByRole("meter", { name: /公開進捗/ }).count(), 8, "roadmap should show publication progress for every level");
 
-  console.log("smoke-check: Course 0A lessons, learning flow, terminology, answers, diagnosis, curriculum, progress, and search passed");
+  console.log("smoke-check: Course 0A/0B lessons, dynamic home state, learning flow, terminology, answers, diagnosis, curriculum, progress, and search passed");
   await context.close();
 } finally {
   await browser.close();

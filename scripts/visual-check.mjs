@@ -11,6 +11,8 @@ const cases = [
   { name: "lesson-desktop", url: "http://localhost:3000/learn/cosmic-address", viewport: { width: 1440, height: 1000 } },
   { name: "lesson-mobile", url: "http://localhost:3000/learn/cosmic-address", viewport: { width: 390, height: 844 } },
   { name: "course0a-lesson-mobile", url: "http://localhost:3000/learn/edge-of-solar-system", viewport: { width: 390, height: 844 } },
+  { name: "course0b-units-mobile", url: "http://localhost:3000/learn/parsec-and-prefixes", viewport: { width: 390, height: 844 } },
+  { name: "course0b-timeline-desktop", url: "http://localhost:3000/learn/cosmic-history-timeline", viewport: { width: 1440, height: 1000 } },
   { name: "spectrum-lesson-desktop", url: "http://localhost:3000/learn/how-astronomy-knows", viewport: { width: 1440, height: 1000 } },
   { name: "spectrum-glossary-mobile", url: "http://localhost:3000/learn/how-astronomy-knows#lesson-glossary-title", viewport: { width: 390, height: 844 } },
   { name: "roadmap-desktop", url: "http://localhost:3000/roadmap", viewport: { width: 1440, height: 1000 } },

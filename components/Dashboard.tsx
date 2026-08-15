@@ -27,11 +27,16 @@ const reviewRoutes: Record<QuizDimension, { href: string; label: string }> = {
 
 export function Dashboard() {
   const learner = useLearnerState();
-  const completedCount = learner.completed.length;
+  const completed = new Set(learner.completed);
+  const completedCount = availableLessons.filter((lesson) => completed.has(lesson.slug)).length;
   const progress = Math.round((completedCount / availableLessons.length) * 100);
-  const lastLesson = availableLessons.find((lesson) => lesson.slug === learner.lastVisited) ?? availableLessons[0];
-  const lastLessonLevel = Number(lastLesson.code[1]);
-  const lastLevel = levels.find((level) => level.level === lastLessonLevel) ?? levels[0];
+  const visitedLesson = availableLessons.find((lesson) => lesson.slug === learner.lastVisited);
+  const nextLesson = visitedLesson && !completed.has(visitedLesson.slug)
+    ? visitedLesson
+    : availableLessons.find((lesson) => !completed.has(lesson.slug)) ?? visitedLesson ?? availableLessons[0];
+  const nextLessonLevel = Number(nextLesson.code[1]);
+  const nextLevel = levels.find((level) => level.level === nextLessonLevel) ?? levels[0];
+  const hasStarted = Boolean(learner.lastVisited);
   const profile = aggregateLatestAttempts(learner.quizAttempts);
   const weakestDimension = getWeakestDimension(profile);
   const review = weakestDimension ? reviewRoutes[weakestDimension] : null;
@@ -51,7 +56,7 @@ export function Dashboard() {
         <div className="relative mx-auto flex min-h-[390px] max-w-7xl flex-col justify-center px-5 py-12 sm:min-h-[430px] sm:px-8 lg:px-12">
           <p className="mb-4 flex items-center gap-2 text-xs font-semibold text-[var(--cyan)]">
             <span className="h-px w-8 bg-[var(--cyan)]" />
-            LEVEL 0 · YOUR COSMIC ADDRESS
+            {hasStarted ? `CURRENT LEVEL · LEVEL ${nextLevel.level} · ${nextLevel.subtitle.toUpperCase()}` : "START HERE · YOUR COSMIC ADDRESS"}
           </p>
           <h1 className="max-w-2xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">ASTRAEA</h1>
           <p className="mt-3 max-w-xl text-xl font-medium text-white sm:text-2xl">宇宙を、証拠から学ぶ。</p>
@@ -59,7 +64,7 @@ export function Dashboard() {
             地球から観測可能な宇宙へ。直感、観測、物理、データを一つの道筋でつなぎ、大学天文学の入口まで進みます。
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link href={`/learn/${lastLesson.slug}`} className="inline-flex h-11 items-center gap-2 bg-[var(--cyan)] px-5 text-sm font-semibold text-[#06110f] hover:bg-[#83e6db]">
+            <Link href={`/learn/${nextLesson.slug}`} className="inline-flex h-11 items-center gap-2 bg-[var(--cyan)] px-5 text-sm font-semibold text-[#06110f] hover:bg-[#83e6db]">
               {completedCount ? "続きから学ぶ" : "最初のレッスンへ"} <ArrowRight size={17} />
             </Link>
             <Link href="/roadmap" className="inline-flex h-11 items-center gap-2 border border-[#687378] bg-black/30 px-5 text-sm font-semibold text-white hover:bg-black/60">
@@ -72,9 +77,9 @@ export function Dashboard() {
       <section className="border-b border-[var(--line)] bg-[#0f1315]">
         <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-[var(--line)] px-5 sm:grid-cols-4 sm:px-8 lg:px-12">
           <Metric icon={CheckCircle2} label="完了" value={`${completedCount} lessons`} />
-          <Metric icon={BarChart3} label="公開教材進捗" value={`${progress}%`} />
+          <Metric icon={BarChart3} label="学習進捗" value={`${progress}%`} />
           <Metric icon={Bookmark} label="ブックマーク" value={`${learner.bookmarks.length}`} />
-          <Metric icon={Clock3} label="次の学習" value={`${lastLesson.duration} min`} />
+          <Metric icon={Clock3} label="次の学習" value={`${nextLesson.duration} min`} />
         </div>
       </section>
 
@@ -87,18 +92,18 @@ export function Dashboard() {
             </div>
             <Link href="/roadmap" className="hidden text-sm text-[var(--muted)] hover:text-white sm:block">ロードマップを開く</Link>
           </div>
-          <Link href={`/learn/${lastLesson.slug}`} className="group grid border border-[var(--line)] bg-[var(--panel)] hover:border-[#4a575c] md:grid-cols-[160px_1fr_auto]">
+          <Link href={`/learn/${nextLesson.slug}`} className="group grid border border-[var(--line)] bg-[var(--panel)] hover:border-[#4a575c] md:grid-cols-[160px_1fr_auto]">
             <div className="flex min-h-32 flex-col justify-between bg-[#192320] p-5">
-              <span className="text-xs font-bold" style={{ color: lastLevel.accent }}>{lastLesson.code}</span>
-              <Orbit size={36} strokeWidth={1.2} style={{ color: lastLevel.accent }} />
+              <span className="text-xs font-bold" style={{ color: nextLevel.accent }}>{nextLesson.code}</span>
+              <Orbit size={36} strokeWidth={1.2} style={{ color: nextLevel.accent }} />
             </div>
             <div className="p-5 sm:p-6">
-              <p className="text-xs text-[var(--muted)]">Level {lastLevel.level} · {lastLevel.title}</p>
-              <h3 className="mt-2 text-xl font-semibold text-white">{lastLesson.title}</h3>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">{lastLevel.description}</p>
+              <p className="text-xs text-[var(--muted)]">Level {nextLevel.level} · {nextLevel.title}</p>
+              <h3 className="mt-2 text-xl font-semibold text-white">{nextLesson.title}</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">{nextLevel.description}</p>
             </div>
             <div className="flex items-center justify-between border-t border-[var(--line)] px-5 py-4 md:block md:border-l md:border-t-0 md:p-6">
-              <span className="text-xs text-[var(--muted)]">約 {lastLesson.duration} 分</span>
+              <span className="text-xs text-[var(--muted)]">約 {nextLesson.duration} 分</span>
               <ArrowRight className="text-[var(--cyan)] transition-transform group-hover:translate-x-1 md:mt-9" size={22} />
             </div>
           </Link>
