@@ -13,6 +13,12 @@
 - Python Astronomy Lab 01、模擬観測データを使う視差解析Lab
 - 用語・概念・推論・データの理解診断、復習提案、進捗、ノート、ブックマークの localStorage 保存
 
+## 現在のマイルストーン
+
+次の目標は教材数の追加ではなく、`Level 0 v1.0 pilot-validated`です。Level 1の追加制作は凍結し、作者による18章の通し履修、初学者3〜5人の行動観察、Pre/Post並行評価、7〜14日後の保持確認を行います。
+
+実施手順は`validation/README.md`、並行評価は`validation/level-0-assessment.md`、Lessonごとの記録用紙は`validation/level-0-lesson-log.csv`を参照してください。生の参加者ログや個人情報はGitへ保存しません。
+
 ## 起動
 
 ```bash

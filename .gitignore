@@ -7,5 +7,6 @@ npm-debug.log*
 *.tsbuildinfo
 dev.*.log
 artifacts/
+validation/results/
 
 .vercel
