@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clock3 } from "lucide-react";
-import { availableLessons } from "@/data/curriculum";
+import { availableLessons, levels } from "@/data/curriculum";
 import { GlossaryTerm } from "@/components/GlossaryTerm";
 import { LayerStack } from "@/components/LayerStack";
 import { LessonActions } from "@/components/LessonActions";
@@ -29,6 +29,8 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
   const lesson = getLesson(slug);
   if (!lesson) notFound();
   const { meta, sections } = lesson;
+  const levelSummary = levels.find((level) => level.level === meta.level);
+  const levelAccent = levelSummary?.accent ?? "#64d8cb";
   const layers = sections.filter((section) => section.title.startsWith("Layer"));
   const regular = sections.filter((section) => !section.title.startsWith("Layer"));
   const currentIndex = availableLessons.findIndex((item) => item.slug === slug);
@@ -42,12 +44,12 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
         <div className="mx-auto max-w-6xl px-5 py-9 sm:px-8 lg:px-12 lg:py-12">
           <Link href="/roadmap" className="inline-flex items-center gap-2 text-xs text-[var(--muted)] hover:text-white"><ArrowLeft size={14} /> ロードマップ</Link>
           <div className="mt-6 flex flex-wrap items-center gap-3 text-xs">
-            <span className="border border-[var(--cyan)] px-2 py-1 font-mono text-[var(--cyan)]">{meta.code}</span>
+            <span className="border px-2 py-1 font-mono" style={{ borderColor: levelAccent, color: levelAccent }}>{meta.code}</span>
             <span className="text-[var(--muted)]">Level {meta.level} · {meta.module}</span>
             <span className="flex items-center gap-1 text-[var(--muted)]"><Clock3 size={13} /> 約 {meta.duration} 分</span>
           </div>
           <h1 className="mt-5 max-w-4xl text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">{meta.title}</h1>
-          <p className="mt-2 text-sm text-[var(--cyan)]">{meta.titleEn}</p>
+          <p className="mt-2 text-sm" style={{ color: levelAccent }}>{meta.titleEn}</p>
           <p className="mt-5 max-w-3xl text-base leading-8 text-[#b5c0be]">{meta.summary}</p>
         </div>
       </header>

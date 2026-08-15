@@ -89,8 +89,8 @@ export function Dashboard() {
           </div>
           <Link href={`/learn/${lastLesson.slug}`} className="group grid border border-[var(--line)] bg-[var(--panel)] hover:border-[#4a575c] md:grid-cols-[160px_1fr_auto]">
             <div className="flex min-h-32 flex-col justify-between bg-[#192320] p-5">
-              <span className="text-xs font-bold text-[var(--cyan)]">{lastLesson.code}</span>
-              <Orbit size={36} strokeWidth={1.2} className="text-[#5fb3aa]" />
+              <span className="text-xs font-bold" style={{ color: lastLevel.accent }}>{lastLesson.code}</span>
+              <Orbit size={36} strokeWidth={1.2} style={{ color: lastLevel.accent }} />
             </div>
             <div className="p-5 sm:p-6">
               <p className="text-xs text-[var(--muted)]">Level {lastLevel.level} · {lastLevel.title}</p>

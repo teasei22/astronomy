@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Check, ChevronDown, Circle, LockKeyhole, Route } from "lucide-react";
+import { Check, CheckCircle2, ChevronDown, Circle, LockKeyhole, Route, Target } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
+import { CurriculumStandard } from "@/components/CurriculumStandard";
 import { availableLessons, levels } from "@/data/curriculum";
 import { useLearnerState } from "@/lib/progress";
 
@@ -49,6 +50,7 @@ export function Roadmap() {
                       <p className="text-[10px] font-bold" style={{ color: level.accent }}>LEVEL {level.level} · {level.subtitle.toUpperCase()}</p>
                       <h2 className="mt-1 text-xl font-semibold text-white sm:text-2xl">{level.title}</h2>
                       <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{level.description}</p>
+                      <p className="mt-3 flex items-start gap-2 text-xs leading-5 text-[#c5cecb]"><Target size={14} className="mt-0.5 shrink-0" style={{ color: level.accent }} /><span><span className="mr-2 font-semibold" style={{ color: level.accent }}>修了すると</span>{level.capabilities[0]}</span></p>
                     </div>
                     <div className="flex shrink-0 items-center gap-3">
                       <span className="hidden text-xs text-[var(--muted)] sm:block">公開 {activeLessons.length}</span>
@@ -60,6 +62,30 @@ export function Roadmap() {
                 {open && (
                   <div className="border-x border-b border-[var(--line)] bg-[#0f1315] p-5 sm:p-6">
                     <div className="grid gap-6 md:grid-cols-2">
+                      <div>
+                        <p className="text-[10px] font-semibold" style={{ color: level.accent }}>CAN DO</p>
+                        <h3 className="mt-1 text-base font-semibold text-white">修了するとできること</h3>
+                        <ul className="mt-3 space-y-2.5">
+                          {level.capabilities.map((capability) => <li key={capability} className="flex items-start gap-2 text-xs leading-5 text-[#c8d0ce]"><CheckCircle2 size={14} className="mt-0.5 shrink-0" style={{ color: level.accent }} />{capability}</li>)}
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-semibold text-[#89959a]">PREREQUISITES</p>
+                        <h3 className="mt-1 text-base font-semibold text-white">先に使えるようにする道具</h3>
+                        {level.prerequisites.length ? (
+                          <div className="mt-3 space-y-2">
+                            {level.prerequisites.map((prerequisite) => {
+                              const content = <><span className={clsx("grid size-5 shrink-0 place-items-center border", prerequisite.available ? "border-[#438378] bg-[#18312c] text-[#9ee3d8]" : "border-[#465158] text-[#718087]")}>{prerequisite.available ? <Check size={12} /> : <Circle size={7} />}</span><span className="min-w-0 flex-1">{prerequisite.label}</span><span className="shrink-0 text-[9px] text-[#728087]">{prerequisite.available ? "復習可" : "準備中"}</span></>;
+                              return prerequisite.href ? <Link key={prerequisite.label} href={prerequisite.href} className="flex min-h-10 items-center gap-2 border border-[#2f383d] px-3 py-2 text-xs text-[#c8d0ce] hover:border-[#59666c] hover:text-white">{content}</Link> : <div key={prerequisite.label} className="flex min-h-10 items-center gap-2 border border-[#2a3236] px-3 py-2 text-xs text-[var(--muted)]">{content}</div>;
+                            })}
+                          </div>
+                        ) : <p className="mt-3 border-l-2 border-[#3f4a4f] px-3 py-2 text-xs text-[var(--muted)]">前提知識はありません。</p>}
+                      </div>
+                    </div>
+
+                    <div className="mt-7 border-t border-[var(--line)] pt-6">
+                      <p className="mb-4 text-[10px] font-semibold text-[#738087]">COURSE STRUCTURE</p>
+                      <div className="grid gap-6 md:grid-cols-2">
                       {level.courses.map((course, courseIndex) => (
                         <div key={course.title}>
                           <p className="text-xs font-semibold text-white">Course {level.level}{String.fromCharCode(65 + courseIndex)} · {course.title}</p>
@@ -72,6 +98,7 @@ export function Roadmap() {
                           </div>
                         </div>
                       ))}
+                      </div>
                     </div>
                     {activeLessons.length > 0 ? (
                       <div className="mt-6 border-t border-[var(--line)] pt-5">
@@ -100,6 +127,8 @@ export function Roadmap() {
           })}
         </div>
       </div>
+
+      <CurriculumStandard />
     </div>
   );
 }

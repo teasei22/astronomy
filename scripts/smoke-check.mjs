@@ -63,7 +63,17 @@ try {
   await page.getByPlaceholder("例: 光年、赤方偏移、宇宙の住所").fill("光年");
   await page.getByRole("link", { name: /光年/ }).first().waitFor();
 
-  console.log("smoke-check: predict-first flow, evidence trail, diagnosis, mastery gate, progress, notes, and search passed");
+  await page.goto("http://localhost:3000/roadmap", { waitUntil: "networkidle" });
+  await page.locator("#level-4 > button").click();
+  await page.getByText("HR図を読み、恒星の色・温度・光度・半径の関係を説明できる", { exact: true }).waitFor();
+  await page.getByText("数学: 対数・指数関数・微分", { exact: true }).waitFor();
+  await page.locator("#level-7 > button").click();
+  await page.getByText("Course 7B · Computational Astronomy", { exact: true }).waitFor();
+  await page.getByText("Course 7E · Capstone", { exact: true }).waitFor();
+  await page.getByRole("heading", { name: "ASTRAEAが「学部相当」と呼ぶ条件" }).waitFor();
+  assert.equal(await page.getByRole("meter", { name: /公開進捗/ }).count(), 8, "roadmap should show publication progress for every level");
+
+  console.log("smoke-check: learning flow, diagnosis, prerequisites, level outcomes, curriculum standard, progress, and search passed");
   await context.close();
 } finally {
   await browser.close();

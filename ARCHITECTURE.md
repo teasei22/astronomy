@@ -25,6 +25,7 @@ content/level-N/     Markdown レッスン
 data/                カリキュラム、用語、施設、データセット定義
 data/lesson-experiences.ts  本文前の予想・証拠シナリオ
 data/skill-bridges.ts       必要時に開く数学・物理の短い復習
+data/curriculum-standard.ts 学部相当を判定する領域・評価証拠・参照大学
 lib/content/         Markdown の検証と読み込み
 lib/progress/        学習状態リポジトリ
 lib/data-sources/    外部アーカイブ用アダプター
@@ -55,6 +56,8 @@ type LessonMeta = {
 ```
 
 frontmatter を実行時スキーマで検証する。slug の重複、存在しない前提レッスン、未登録用語、取得日のない可変情報を CI で失敗させる。
+
+Levelは説明文だけでなく、観察可能な行動で書く `capabilities` と、公開状態・復習先を持つ `prerequisites` を必須とする。Level色は基礎、科学的方法、観測、惑星・軌道、恒星、銀河、宇宙論、研究の領域識別に一貫して使う。
 
 ## 5. 学習状態
 

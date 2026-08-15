@@ -13,6 +13,8 @@ ASTRAEA は、天文学・物理学をほぼ未履修の学習者が、観測事
 3. 公開カタログ、光度曲線、スペクトル、画像を Python で扱える。
 4. 論文の Abstract、Figures、Conclusion を読み、主張と根拠の強さを評価できる。
 
+ロードマップは各Levelについて、修了後の評価可能な能力とPrerequisitesを公開する。計画教材の公開率、カリキュラム領域の評価証拠、個々の学習者の習得率は別の指標として扱う。
+
 ## 2. 教育設計の根拠
 
 大学学部で共通して重視される「物理・数学の基礎」「観測」「計算」「専門天体物理」「研究経験」を骨格とする。
@@ -74,7 +76,11 @@ ASTRAEA では、この大学型の順序をそのまま初心者へ要求せず
 
 ### Phase 5: Research Practice
 
-- Level 7 放射過程・流体・プラズマ・力学
+- Level 7A 理論基礎: 放射過程・流体・プラズマ・統計推論
+- Level 7B Computational Astronomy: Python・Astropy・FITS・数値計算
+- Level 7C Observational Data Analysis: 画像・スペクトル・光度曲線・カタログ
+- Level 7D Research Literacy: 論文・ADS・arXiv・統計的有意性
+- Level 7E Capstone: 問いの設計・実データ解析・研究レポート
 - 14 の Astronomy Lab、論文読解、5つの Capstone
 - 実データ取得、キャッシュ、出典・ライセンス表示
 
