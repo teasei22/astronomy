@@ -71,9 +71,10 @@ function validateMeta(data: unknown, file: string): LessonMeta {
 }
 
 function validateUniversityContract(meta: LessonMeta, sections: LessonSection[], file: string) {
-  const isCourse1ABaseline = meta.level === 1 && meta.module === "天文学という科学";
-  if (meta.level === 0 || isCourse1ABaseline) {
-    const contractName = meta.level === 0 ? "Level 0" : "Course 1A";
+  const standardizedLevel1Modules = new Set(["天文学という科学", "対象別の専門分野"]);
+  const isStandardizedLevel1 = meta.level === 1 && standardizedLevel1Modules.has(meta.module);
+  if (meta.level === 0 || isStandardizedLevel1) {
+    const contractName = meta.level === 0 ? "Level 0" : "Level 1";
     const questions = quizzes[meta.slug] ?? [];
     if (!lessonExperiences[meta.slug]) throw new Error(`${file}: ${contractName} lessons require a predict-first experience`);
     if (questions.length < 5) throw new Error(`${file}: ${contractName} lessons require at least 5 diagnostic questions`);
@@ -86,13 +87,13 @@ function validateUniversityContract(meta: LessonMeta, sections: LessonSection[],
       if (!sections.some((section) => section.title === required)) throw new Error(`${file}: Level 0 lesson is missing ${required}`);
     }
   }
-  if (isCourse1ABaseline) {
+  if (isStandardizedLevel1) {
     const scope = sections.find((section) => section.title === "このLevelで求める理解");
     if (!scope || !["Required Now", "Preview Only", "Returns In"].every((label) => scope.markdown.includes(label))) {
-      throw new Error(`${file}: Course 1A requires Required Now / Preview Only / Returns In`);
+      throw new Error(`${file}: Level 1 requires Required Now / Preview Only / Returns In`);
     }
     for (const required of ["独力演習", "独力演習の解答"]) {
-      if (!sections.some((section) => section.title === required)) throw new Error(`${file}: Course 1A lesson is missing ${required}`);
+      if (!sections.some((section) => section.title === required)) throw new Error(`${file}: Level 1 lesson is missing ${required}`);
     }
   }
   if (meta.level < 2) return;

@@ -43,13 +43,17 @@ try {
     await page.getByRole("button", { name: "採点する" }).waitFor();
   }
 
-  const course1ALessons = [
+  const standardizedLevel1Lessons = [
     ["map-of-astronomy", "天文学の全体地図"],
     ["observational-astronomy", "観測天文学：届いた信号を測る"],
     ["theoretical-astronomy", "理論天文学：法則から予測を作る"],
     ["computational-astronomy", "計算天文学：複雑な宇宙を計算機で試す"],
+    ["planetary-science-and-astrobiology", "惑星科学・系外惑星・アストロバイオロジー"],
+    ["stars-and-interstellar-medium", "太陽・恒星・星間物質"],
+    ["galaxies-and-cosmology", "天の川・銀河・宇宙論"],
+    ["high-energy-and-multi-messenger-astronomy", "高エネルギー・重力波・ニュートリノ"],
   ];
-  for (const [slug, title] of course1ALessons) {
+  for (const [slug, title] of standardizedLevel1Lessons) {
     await page.goto(`http://localhost:3000/learn/${slug}`, { waitUntil: "networkidle" });
     await page.getByRole("heading", { name: title, exact: true }).waitFor();
     await page.getByText("PREDICT FIRST", { exact: true }).waitFor();
@@ -75,6 +79,11 @@ try {
   await observationExperience.getByRole("button", { name: /二つへ共通する雲や装置感度の変化/ }).click();
   for (let index = 0; index < 4; index += 1) await observationExperience.getByRole("button", { name: "証拠を1段見る" }).click();
   await observationExperience.getByText("証拠の鎖がつながりました。予想と照らし合わせてから解説へ進みます。").waitFor();
+  await page.goto("http://localhost:3000/learn/planetary-science-and-astrobiology", { waitUntil: "networkidle" });
+  await page.getByText(/生命存在可能領域は生命の証拠ではない/).first().waitFor();
+  await page.goto("http://localhost:3000/learn/high-energy-and-multi-messenger-astronomy", { waitUntil: "networkidle" });
+  await page.getByText(/ブラックホールは信号ではなく研究する対象/).waitFor();
+  assert.equal(await page.getByRole("link", { name: /観測が宇宙観を変えた/ }).getAttribute("href"), "/learn/history-of-evidence", "L1-08 should continue to L1-09");
   await page.goto("http://localhost:3000/learn/where-space-begins", { waitUntil: "networkidle" });
   assert.equal(await page.locator(".prose-lesson").getByText(/地球の重力によって、大気は地表付近ほど多く集まっています。/).count(), 1, "L0-01 should connect atmospheric density to gravity and pressure");
   const firstLessonGlossary = page.locator("section[aria-labelledby='lesson-glossary-title']");
@@ -182,15 +191,16 @@ try {
   await page.getByRole("link", { name: /光年/ }).first().waitFor();
 
   await page.goto("http://localhost:3000/roadmap", { waitUntil: "networkidle" });
-  await page.getByText("26 教材", { exact: true }).waitFor();
+  await page.getByText("30 教材", { exact: true }).waitFor();
   await page.getByText("6/6 公開", { exact: true }).first().waitFor();
   assert.equal(await page.getByText("6/6 公開", { exact: true }).count(), 3, "all three Level 0 courses should be complete");
   await page.getByText("公開 18", { exact: true }).waitFor();
   await page.locator("#level-1 > button").click();
   await page.getByText("Course 1A · 天文学という科学", { exact: true }).waitFor();
-  await page.getByText("4/4 公開", { exact: true }).waitFor();
-  await page.getByText("公開 5", { exact: true }).waitFor();
+  await page.getByText("4/4 公開", { exact: true }).first().waitFor();
+  await page.getByText("公開 9", { exact: true }).waitFor();
   await page.getByText("Course 1B · 対象別の専門分野", { exact: true }).waitFor();
+  assert.equal(await page.getByText("4/4 公開", { exact: true }).count(), 2, "Course 1A and Course 1B should both be complete");
   await page.getByText("Course 1C · 証拠が宇宙観を変える", { exact: true }).waitFor();
   await page.locator("#level-4 > button").click();
   await page.getByText("HR図を読み、恒星の色・温度・光度・半径の関係を説明できる", { exact: true }).waitFor();
@@ -204,7 +214,7 @@ try {
   await page.getByRole("heading", { name: "ASTRAEAが「学部相当」と呼ぶ条件" }).waitFor();
   assert.equal(await page.getByRole("meter", { name: /公開進捗/ }).count(), 8, "roadmap should show publication progress for every level");
 
-  console.log("smoke-check: Level 0 and Course 1A learning flows, glossary links, scope, answers, diagnosis, curriculum, progress, and search passed");
+  console.log("smoke-check: Level 0 and standardized Level 1 learning flows, glossary links, scope, answers, diagnosis, curriculum, progress, and search passed");
   await context.close();
 } finally {
   await browser.close();

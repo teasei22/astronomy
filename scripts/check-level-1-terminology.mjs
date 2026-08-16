@@ -19,10 +19,11 @@ const lessons = fs
   .readdirSync(contentDir)
   .filter((file) => file.endsWith(".md"))
   .map((file) => matter(fs.readFileSync(path.join(contentDir, file), "utf8")).data)
-  .filter((lesson) => lesson.module === "天文学という科学")
+  .filter((lesson) => Object.hasOwn(tiers, lesson.slug))
   .sort((a, b) => a.code.localeCompare(b.code));
 
-if (lessons.length !== 4) errors.push(`Course 1A lesson count must be 4, received ${lessons.length}.`);
+const expectedCount = Object.keys(tiers).length;
+if (lessons.length !== expectedCount) errors.push(`Standardized Level 1 lesson count must be ${expectedCount}, received ${lessons.length}.`);
 
 for (const lesson of lessons) {
   const entry = tiers[lesson.slug];
@@ -70,7 +71,7 @@ for (const id of new Set(topicIds)) {
 }
 
 if (errors.length > 0) {
-  console.error("Course 1A terminology audit failed:\n");
+  console.error("Level 1 terminology audit failed:\n");
   for (const error of errors) console.error(`- ${error}`);
   process.exit(1);
 }
@@ -80,5 +81,5 @@ const uniqueAssigned = new Set(
 ).size;
 
 console.log(
-  `Course 1A terminology audit passed: ${lessons.length}/4 lessons, ${assignmentCount}/${assignmentCount} classified term assignments, ${uniqueAssigned} unique glossary terms.`,
+  `Level 1 terminology audit passed: ${lessons.length}/${expectedCount} lessons, ${assignmentCount}/${assignmentCount} classified term assignments, ${uniqueAssigned} unique glossary terms.`,
 );

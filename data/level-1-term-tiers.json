@@ -22,5 +22,29 @@
     "core": ["simulation", "initial-condition", "parameter", "model"],
     "supporting": ["data", "observation", "numerical-error", "reproducibility"],
     "advanced": ["numerical-integration", "simulation-resolution"]
+  },
+  "planetary-science-and-astrobiology": {
+    "code": "L1-05",
+    "core": ["planetary-science", "planet", "exoplanet", "astrobiology", "habitable-zone"],
+    "supporting": ["orbit", "transit", "atmosphere", "mass"],
+    "advanced": ["biosignature"]
+  },
+  "stars-and-interstellar-medium": {
+    "code": "L1-06",
+    "core": ["sun", "star", "mass", "interstellar-medium", "stellar-evolution"],
+    "supporting": ["nuclear-fusion", "molecular-cloud", "element", "dust"],
+    "advanced": ["supernova", "spectrum"]
+  },
+  "galaxies-and-cosmology": {
+    "code": "L1-07",
+    "core": ["milky-way", "galaxy", "galaxy-evolution", "cosmology"],
+    "supporting": ["star", "interstellar-medium", "dark-matter", "redshift", "cosmic-expansion"],
+    "advanced": ["cmb", "cosmic-web"]
+  },
+  "high-energy-and-multi-messenger-astronomy": {
+    "code": "L1-08",
+    "core": ["high-energy-astronomy", "messenger", "gravitational-wave", "neutrino", "multi-messenger-astronomy"],
+    "supporting": ["electromagnetic-wave", "x-ray", "gamma-ray", "cosmic-ray", "black-hole", "neutron-star"],
+    "advanced": ["supernova"]
   }
 }
