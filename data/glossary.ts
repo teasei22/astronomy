@@ -152,6 +152,7 @@ export const glossary: GlossaryEntry[] = [
   { id: "wavelength", termJa: "波長", termEn: "Wavelength", abbr: "λ", definition: "波の形が一回繰り返す間隔。光では波長の違いが色や電磁波の種類の違いに対応する。", level: 0, category: "physics" },
   { id: "nanometer", termJa: "ナノメートル", termEn: "Nanometer", abbr: "nm", definition: "10億分の1メートルを表す長さの単位。可視光の波長はおよそ380〜700 nm。", level: 0, category: "scale" },
   { id: "spectrum", termJa: "スペクトル", termEn: "Spectrum", definition: "光を波長ごとに分け、各波長でどれだけの光を受け取ったかを並べたもの。画像やグラフで表す。", level: 0, category: "observation" },
+  { id: "doppler-effect", termJa: "ドップラー効果", termEn: "Doppler effect", definition: "光を出す物体と観測者が近づくか遠ざかるかによって、受け取る光の波長がずれて見える現象。天体の視線方向の運動を調べる手がかりになる。", level: 1, category: "physics" },
   { id: "absorption-line", termJa: "吸収線", termEn: "Absorption line", definition: "スペクトル上で、周囲より光が少なくなっている細い波長域。物質が特定の波長の光を吸収すると生じる。", level: 0, category: "observation" },
   { id: "atom", termJa: "原子", termEn: "Atom", definition: "身の回りや天体の物質を作る基本的な小さな単位。中心部分と、その周りにある電気を帯びた部分からなります。", level: 0, category: "physics" },
   { id: "element", termJa: "元素", termEn: "Chemical element", definition: "水素、ヘリウム、鉄など、原子の中心部分の違いで区別する物質の種類。", level: 0, category: "physics" },

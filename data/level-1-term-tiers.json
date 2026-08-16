@@ -63,7 +63,7 @@
     "code": "L1-11",
     "core": ["transient", "observation", "theory", "simulation", "alternative-explanation"],
     "supporting": ["data", "model", "prediction", "light-curve", "spectrum", "calibration", "uncertainty"],
-    "advanced": ["independent-evidence"]
+    "advanced": ["doppler-effect", "independent-evidence"]
   },
   "choosing-methods-for-astronomy-questions": {
     "code": "L1-12",
