@@ -17,6 +17,7 @@ const cases = [
   { name: "course0c-big-bang-mobile", url: "http://localhost:3000/learn/big-bang-without-a-center", viewport: { width: 390, height: 844 } },
   { name: "spectrum-lesson-desktop", url: "http://localhost:3000/learn/how-astronomy-knows", viewport: { width: 1440, height: 1000 } },
   { name: "spectrum-glossary-mobile", url: "http://localhost:3000/learn/how-astronomy-knows#lesson-glossary-title", viewport: { width: 390, height: 844 } },
+  { name: "glossary-target-mobile", url: "http://localhost:3000/glossary#heliopause", viewport: { width: 390, height: 844 } },
   { name: "roadmap-desktop", url: "http://localhost:3000/roadmap", viewport: { width: 1440, height: 1000 } },
   { name: "roadmap-mobile", url: "http://localhost:3000/roadmap", viewport: { width: 390, height: 844 } },
   { name: "standard-desktop", url: "http://localhost:3000/roadmap#standard-heading", viewport: { width: 1440, height: 1000 } },

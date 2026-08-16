@@ -37,6 +37,7 @@ try {
     await page.getByRole("heading", { name: "練習問題の解答", exact: true }).waitFor();
     await page.getByRole("heading", { name: "発展問題の解答", exact: true }).waitFor();
     await page.locator("section[aria-labelledby='lesson-glossary-title']").waitFor();
+    assert(await page.locator(".prose-lesson .glossary-link").count() > 0, `${slug} should link its first glossary term from the lesson body`);
     await page.getByRole("button", { name: "採点する" }).waitFor();
   }
   await page.goto("http://localhost:3000/learn/where-space-begins", { waitUntil: "networkidle" });
@@ -47,6 +48,18 @@ try {
   const timelineGlossary = page.locator("section[aria-labelledby='lesson-glossary-title']");
   await timelineGlossary.getByText("再結合", { exact: true }).waitFor();
   await timelineGlossary.getByText("放射年代測定", { exact: true }).waitFor();
+
+  await page.goto("http://localhost:3000/learn/edge-of-solar-system", { waitUntil: "networkidle" });
+  const heliopauseLink = page.locator(".prose-lesson a.glossary-link[href='/glossary#heliopause']");
+  assert.equal(await heliopauseLink.count(), 1, "a glossary term should be linked only at its first lesson-body occurrence");
+  await heliopauseLink.click();
+  await page.waitForURL("http://localhost:3000/glossary#heliopause");
+  const heliopauseEntry = page.locator("#heliopause");
+  await heliopauseEntry.waitFor();
+  await heliopauseEntry.evaluate((element) => new Promise((resolve) => requestAnimationFrame(() => resolve(element.classList.contains("glossary-entry-active")))));
+  assert(await heliopauseEntry.evaluate((element) => element.classList.contains("glossary-entry-active")), "the linked glossary entry should be visually highlighted");
+  const heliopauseBox = await heliopauseEntry.boundingBox();
+  assert(heliopauseBox && heliopauseBox.y >= 100 && heliopauseBox.y < 400, "the glossary target should be visible below the sticky controls");
 
   await page.goto("http://localhost:3000/learn/cosmic-address", { waitUntil: "networkidle" });
   const experience = page.locator("section").filter({ hasText: "PREDICT FIRST" }).first();
@@ -68,7 +81,7 @@ try {
 
   await page.getByRole("button", { name: "B 天の川銀河", exact: true }).click();
   await page.getByRole("button", { name: /A 地球 → 太陽系 → 天の川銀河 → 局所銀河群/ }).click();
-  await page.getByRole("button", { name: "A すぐ吸い込まれる", exact: true }).click();
+  await page.getByRole("button", { name: "B 地上の気温だけ", exact: true }).click();
   await page.getByRole("button", { name: "B 地球と太陽の距離が最も大きい", exact: true }).click();
   await page.getByRole("button", { name: /B 恒星円盤・ガス・暗黒物質など/ }).click();
   await page.getByRole("button", { name: "採点する" }).click();
@@ -141,7 +154,7 @@ try {
   await page.getByRole("heading", { name: "ASTRAEAが「学部相当」と呼ぶ条件" }).waitFor();
   assert.equal(await page.getByRole("meter", { name: /公開進捗/ }).count(), 8, "roadmap should show publication progress for every level");
 
-  console.log("smoke-check: all Level 0 courses, dynamic home state, learning flow, terminology, answers, diagnosis, curriculum, progress, and search passed");
+  console.log("smoke-check: all Level 0 courses, glossary links, dynamic home state, learning flow, terminology, answers, diagnosis, curriculum, progress, and search passed");
   await context.close();
 } finally {
   await browser.close();

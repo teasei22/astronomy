@@ -1,13 +1,29 @@
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import { createGlossaryLinkPlugin } from "@/lib/glossary-links";
 
-export function MarkdownBody({ markdown }: { markdown: string }) {
-  return <div className="prose-lesson"><ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>{markdown}</ReactMarkdown></div>;
+export function MarkdownBody({ markdown, glossaryIds = [] }: { markdown: string; glossaryIds?: string[] }) {
+  return (
+    <div className="prose-lesson">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm, remarkMath, createGlossaryLinkPlugin(glossaryIds)]}
+        rehypePlugins={[rehypeKatex]}
+        components={{
+          a: ({ href, children, title }) => href?.startsWith("/glossary#")
+            ? <Link href={href} title={title} className="glossary-link">{children}</Link>
+            : <a href={href} title={title}>{children}</a>,
+        }}
+      >
+        {markdown}
+      </ReactMarkdown>
+    </div>
+  );
 }
 
-export function LessonSection({ title, markdown, index, collapsible = false }: { title: string; markdown: string; index: number; collapsible?: boolean }) {
+export function LessonSection({ title, markdown, index, collapsible = false, glossaryIds = [] }: { title: string; markdown: string; index: number; collapsible?: boolean; glossaryIds?: string[] }) {
   if (collapsible) {
     return (
       <details className="group border-b border-[var(--line)] bg-[#0d1113]">
@@ -17,7 +33,7 @@ export function LessonSection({ title, markdown, index, collapsible = false }: {
           <span className="border border-[#394349] px-2 py-1 text-[9px] text-[var(--muted)]">深掘り</span>
           <span className="text-lg font-light text-[var(--muted)] transition-transform group-open:rotate-45">+</span>
         </summary>
-        <div className="pb-8 pl-6 sm:pl-7"><MarkdownBody markdown={markdown} /></div>
+        <div className="pb-8 pl-6 sm:pl-7"><MarkdownBody markdown={markdown} glossaryIds={glossaryIds} /></div>
       </details>
     );
   }
@@ -28,7 +44,7 @@ export function LessonSection({ title, markdown, index, collapsible = false }: {
         <span className="mt-1 font-mono text-[10px] text-[#657178]">{String(index + 1).padStart(2, "0")}</span>
         <h2 className="text-xl font-semibold leading-8 text-white sm:text-2xl">{title}</h2>
       </div>
-      <MarkdownBody markdown={markdown} />
+      <MarkdownBody markdown={markdown} glossaryIds={glossaryIds} />
     </section>
   );
 }

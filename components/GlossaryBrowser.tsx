@@ -2,7 +2,7 @@
 
 import { BookOpen, Search, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import { glossary, type GlossaryEntry } from "@/data/glossary";
 
@@ -20,6 +20,17 @@ export function GlossaryBrowser() {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") ?? "");
   const [category, setCategory] = useState<(typeof categories)[number]["id"]>("all");
+  const [targetId, setTargetId] = useState<string | null>(null);
+  useEffect(() => {
+    const syncTarget = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1)) || null;
+      setTargetId(id);
+      if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: "start" }));
+    };
+    syncTarget();
+    window.addEventListener("hashchange", syncTarget);
+    return () => window.removeEventListener("hashchange", syncTarget);
+  }, []);
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
     return glossary.filter((entry) => {
@@ -57,7 +68,7 @@ export function GlossaryBrowser() {
 
       <div className="mt-3 grid gap-px bg-[var(--line)] border border-[var(--line)] md:grid-cols-2">
         {filtered.map((entry) => (
-          <article key={entry.id} id={entry.id} className="min-h-48 bg-[var(--panel)] p-5 sm:p-6">
+          <article key={entry.id} id={entry.id} tabIndex={-1} className={clsx("glossary-entry min-h-48 scroll-mt-40 bg-[var(--panel)] p-5 sm:p-6", targetId === entry.id && "glossary-entry-active")}>
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h2 className="text-lg font-semibold text-white">{entry.termJa}</h2>

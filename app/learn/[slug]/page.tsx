@@ -13,6 +13,7 @@ import { QuizBlock } from "@/components/QuizBlock";
 import { SkillBridge } from "@/components/SkillBridge";
 import { StatusBadge } from "@/components/StatusBadge";
 import { getAllLessonSlugs, getLesson } from "@/lib/content";
+import { assignGlossaryIdsToSections } from "@/lib/glossary-links";
 
 export function generateStaticParams() {
   return getAllLessonSlugs().map((slug) => ({ slug }));
@@ -29,10 +30,12 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
   const lesson = getLesson(slug);
   if (!lesson) notFound();
   const { meta, sections } = lesson;
+  const glossaryIdsBySection = assignGlossaryIdsToSections(sections, meta.glossaryIds);
+  const linkedSections = sections.map((section, index) => ({ ...section, glossaryIds: glossaryIdsBySection[index] }));
   const levelSummary = levels.find((level) => level.level === meta.level);
   const levelAccent = levelSummary?.accent ?? "#64d8cb";
-  const layers = sections.filter((section) => section.title.startsWith("Layer"));
-  const regular = sections.filter((section) => !section.title.startsWith("Layer"));
+  const layers = linkedSections.filter((section) => section.title.startsWith("Layer"));
+  const regular = linkedSections.filter((section) => !section.title.startsWith("Layer"));
   const currentIndex = availableLessons.findIndex((item) => item.slug === slug);
   const previous = availableLessons[currentIndex - 1];
   const next = availableLessons[currentIndex + 1];
@@ -79,7 +82,7 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
             {regular.map((section, index) => (
               <div key={section.title}>
                 {index === layerInsertAt && layers.length > 0 && <LayerStack layers={layers} />}
-                <LessonSection title={section.title} markdown={section.markdown} index={index} collapsible={isOptionalReference(meta.level, section.title)} />
+                <LessonSection title={section.title} markdown={section.markdown} index={index} collapsible={isOptionalReference(meta.level, section.title)} glossaryIds={section.glossaryIds} />
               </div>
             ))}
             {layerInsertAt >= regular.length && layers.length > 0 && <LayerStack layers={layers} />}

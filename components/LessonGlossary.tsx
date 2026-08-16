@@ -24,7 +24,9 @@ export function LessonGlossary({ ids }: { ids: string[] }) {
         {entries.map((entry) => (
           <div key={entry.id} className="grid gap-2 py-4 sm:grid-cols-[minmax(150px,0.36fr)_minmax(0,1fr)] sm:gap-6">
             <dt>
-              <span className="block text-sm font-semibold text-[#e5eae8]">{entry.termJa}</span>
+              <Link href={`/glossary#${entry.id}`} className="inline-flex items-center gap-1 text-sm font-semibold text-[#e5eae8] underline decoration-dotted decoration-[#528f88] underline-offset-4 hover:text-white" aria-label={`用語集で「${entry.termJa}」を見る`}>
+                {entry.termJa}<ArrowRight size={12} aria-hidden="true" />
+              </Link>
               <span className="mt-1 block text-[11px] text-[var(--cyan)]">
                 {entry.termEn}{entry.abbr ? ` · ${entry.abbr}` : ""}
               </span>

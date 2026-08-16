@@ -1,6 +1,6 @@
 import { MarkdownBody } from "@/components/LessonSection";
 
-export function LayerStack({ layers }: { layers: { title: string; markdown: string }[] }) {
+export function LayerStack({ layers }: { layers: { title: string; markdown: string; glossaryIds: string[] }[] }) {
   return (
     <section className="border-b border-[var(--line)] py-8 sm:py-10">
       <p className="text-[10px] font-semibold text-[var(--cyan)]">THREE LAYERS</p>
@@ -13,7 +13,7 @@ export function LayerStack({ layers }: { layers: { title: string; markdown: stri
               <span><span className="mr-3 font-mono text-[var(--cyan)]">0{index + 1}</span>{layer.title}</span>
               <span className="text-lg font-light text-[var(--muted)] group-open:rotate-45">+</span>
             </summary>
-            <div className="border-t border-[var(--line)] px-4 py-5 sm:px-5"><MarkdownBody markdown={layer.markdown} /></div>
+            <div className="border-t border-[var(--line)] px-4 py-5 sm:px-5"><MarkdownBody markdown={layer.markdown} glossaryIds={layer.glossaryIds} /></div>
           </details>
         ))}
       </div>

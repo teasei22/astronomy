@@ -1,0 +1,110 @@
+{
+  "where-space-begins": {
+    "code": "L0-01",
+    "core": ["atmosphere", "altitude", "density", "karman-line"],
+    "supporting": ["air-drag", "convention", "orbit", "international-space-station"],
+    "advanced": ["low-earth-orbit", "magnetic-field"]
+  },
+  "earth-moon-sun-scale": {
+    "code": "L0-02",
+    "core": ["diameter", "average-distance", "scale-model", "earth", "moon", "sun"],
+    "supporting": ["natural-satellite", "au", "solar-eclipse", "ellipse"],
+    "advanced": ["laser", "tide"]
+  },
+  "edge-of-solar-system": {
+    "code": "L0-03",
+    "core": ["solar-system", "kuiper-belt", "solar-wind", "heliopause", "oort-cloud", "interstellar-space"],
+    "supporting": ["au", "orbit", "gravity", "heliosphere", "comet", "voyager", "evidence"],
+    "advanced": ["dwarf-planet", "magnetic-field"]
+  },
+  "sun-is-a-star": {
+    "code": "L0-04",
+    "core": ["sun", "star", "planet", "natural-satellite", "reflected-light", "nuclear-fusion"],
+    "supporting": ["plasma", "photosphere", "gravity", "atom", "hydrogen", "combustion", "atomic-nucleus"],
+    "advanced": ["spectrum", "neutrino", "corona", "magnetic-field"]
+  },
+  "cosmic-address": {
+    "code": "L0-05",
+    "core": ["universe", "planet", "star", "solar-system", "milky-way", "galaxy", "galaxy-group", "cosmic-web", "observable-universe", "scale"],
+    "supporting": ["celestial-body", "dust", "galaxy-cluster", "gravity", "au", "light-year", "parsec"],
+    "advanced": ["dark-matter", "redshift", "parallax"]
+  },
+  "galaxy-groups-and-cosmic-web": {
+    "code": "L0-06",
+    "core": ["galaxy", "galaxy-group", "galaxy-cluster", "cosmic-web", "projection-effect"],
+    "supporting": ["dust", "gravitationally-bound", "supercluster", "filament", "void"],
+    "advanced": ["redshift", "x-ray", "dark-matter", "gravitational-lens"]
+  },
+  "choosing-cosmic-distance-units": {
+    "code": "L0-07",
+    "core": ["unit", "kilometer", "au", "light-year", "unit-conversion"],
+    "supporting": ["light-speed", "order-of-magnitude"],
+    "advanced": ["parallax", "uncertainty", "julian-year"]
+  },
+  "parsec-and-prefixes": {
+    "code": "L0-08",
+    "core": ["parsec", "parallax", "degree", "arcminute", "arcsecond", "metric-prefix", "kiloparsec", "megaparsec", "gigaparsec"],
+    "supporting": ["light-year"],
+    "advanced": ["uncertainty", "gaia", "baseline"]
+  },
+  "apparent-and-physical-size": {
+    "code": "L0-09",
+    "core": ["angular-size", "angular-diameter", "physical-size", "average-distance"],
+    "supporting": ["degree", "arcminute", "arcsecond", "pixel", "ellipse"],
+    "advanced": ["radian", "small-angle-approximation", "angular-resolution", "uncertainty"]
+  },
+  "light-is-a-time-machine": {
+    "code": "L0-10",
+    "core": ["light-year", "light-speed", "lookback-time"],
+    "supporting": ["parallax", "observation"],
+    "advanced": ["cosmic-expansion", "comoving-distance", "luminosity-distance", "redshift"]
+  },
+  "cosmic-history-timeline": {
+    "code": "L0-11",
+    "core": ["big-bang", "cosmic-timeline", "cmb", "dark-ages", "cosmic-dawn"],
+    "supporting": ["nucleosynthesis", "recombination", "radiometric-dating", "lookback-time", "atom", "element"],
+    "advanced": ["uncertainty", "redshift", "inflation"]
+  },
+  "observable-universe": {
+    "code": "L0-12",
+    "core": ["observable-universe", "universe", "lookback-time", "cosmic-expansion", "signal"],
+    "supporting": ["cmb"],
+    "advanced": ["comoving-distance", "luminosity-distance", "redshift", "neutrino", "gravitational-wave", "inflation", "cosmological-model", "horizon"]
+  },
+  "reading-cosmic-signals": {
+    "code": "L0-13",
+    "core": ["signal", "remote-sensing", "electromagnetic-wave", "electromagnetic-spectrum", "wavelength", "apparent-brightness", "spectrum", "detector", "calibration", "model"],
+    "supporting": ["dust", "x-ray", "messenger"],
+    "advanced": ["neutrino", "gravitational-wave", "black-hole", "neutron-star", "inverse-problem", "multi-messenger-astronomy"]
+  },
+  "how-astronomy-knows": {
+    "code": "L0-14",
+    "core": ["wave", "electromagnetic-wave", "wavelength", "nanometer", "spectrum", "absorption-line", "detector", "calibration", "observation", "data"],
+    "supporting": ["atom", "element", "hydrogen", "model", "hypothesis", "evidence"],
+    "advanced": ["uncertainty", "systematic-error"]
+  },
+  "levels-of-scientific-confidence": {
+    "code": "L0-15",
+    "core": ["scientific-claim", "evidence", "hypothesis", "model", "testable", "uncertainty"],
+    "supporting": ["independent-evidence", "reproducibility", "systematic-error", "dark-matter", "dark-energy"],
+    "advanced": []
+  },
+  "light-year-is-distance": {
+    "code": "L0-16",
+    "core": ["physical-quantity", "unit", "distance", "time", "light-year", "light-speed", "unit-conversion", "lookback-time"],
+    "supporting": ["parallax", "redshift"],
+    "advanced": ["cosmic-expansion"]
+  },
+  "why-earth-has-seasons": {
+    "code": "L0-17",
+    "core": ["season", "rotation-axis", "axial-tilt", "hemisphere", "solar-elevation", "daylight-duration", "direct-sunlight", "orbit", "revolution", "orbital-plane"],
+    "supporting": ["perihelion", "aphelion", "average-distance"],
+    "advanced": []
+  },
+  "big-bang-without-a-center": {
+    "code": "L0-18",
+    "core": ["big-bang", "hot-big-bang", "cosmic-expansion", "expansion-center", "cmb", "light-element-abundance", "cosmological-model"],
+    "supporting": ["observable-universe", "redshift", "nucleosynthesis"],
+    "advanced": ["inflation", "scale-factor"]
+  }
+}
