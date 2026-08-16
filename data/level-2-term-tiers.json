@@ -1,0 +1,50 @@
+{
+  "angular-measurement": {
+    "code": "M2-01",
+    "core": ["angle", "radian", "unit-conversion", "small-angle-approximation", "angular-diameter"],
+    "supporting": ["arcminute", "arcsecond", "milliarcsecond", "uncertainty", "significant-figures", "parsec"],
+    "advanced": ["data", "telescope", "psf", "resolution", "diffraction"]
+  },
+  "horizon-coordinates-and-daily-motion": {
+    "code": "L2-01",
+    "core": ["local-horizon", "zenith", "meridian", "altitude-coordinate", "azimuth", "horizon-coordinate", "diurnal-motion"],
+    "supporting": ["celestial-sphere", "cardinal-direction", "earth-rotation", "angular-speed", "uncertainty"],
+    "advanced": ["atmospheric-refraction", "topocentric-coordinate"]
+  },
+  "right-ascension-and-declination": {
+    "code": "L2-02",
+    "core": ["celestial-equator", "celestial-pole", "equatorial-coordinate", "right-ascension", "declination"],
+    "supporting": ["celestial-sphere", "great-circle", "reference-frame", "epoch", "proper-motion", "horizon-coordinate", "angular-separation"],
+    "advanced": ["hour-angle", "icrs"]
+  },
+  "astronomical-time-and-epoch": {
+    "code": "L2-03",
+    "core": ["solar-day", "sidereal-day", "local-sidereal-time", "hour-angle", "meridian-transit"],
+    "supporting": ["sidereal-time", "utc", "ut1", "time-scale", "julian-date", "calendar", "epoch", "right-ascension"],
+    "advanced": ["precession", "nutation"]
+  },
+  "parallax-distance": {
+    "code": "L2-04",
+    "core": ["parallax", "parsec", "au", "distance"],
+    "supporting": ["milliarcsecond", "uncertainty", "signal-to-noise", "systematic-error", "proper-motion", "zero-point", "selection-effect"],
+    "advanced": ["inference", "likelihood", "prior"]
+  },
+  "measurement-uncertainty": {
+    "code": "M2-02",
+    "core": ["uncertainty", "random-error", "systematic-error", "standard-deviation", "standard-error", "error-propagation", "weighted-mean"],
+    "supporting": ["signal-to-noise", "data", "model", "parallax", "variance", "significant-figures", "selection-effect"],
+    "advanced": ["covariance", "likelihood", "prior", "inference"]
+  },
+  "standard-candles-and-rulers": {
+    "code": "L2-05",
+    "core": ["distance-indicator", "distance-ladder", "standard-candle", "standard-ruler", "inverse-square-law"],
+    "supporting": ["flux", "luminosity", "angular-diameter", "calibration", "cepheid", "period-luminosity-relation", "extinction", "zero-point"],
+    "advanced": ["type-ia-supernova", "metallicity", "intrinsic-scatter"]
+  },
+  "distance-uncertainty-and-bias": {
+    "code": "L2-06",
+    "core": ["uncertainty", "random-error", "systematic-error", "bias", "selection-bias", "nonlinear-transformation", "error-propagation"],
+    "supporting": ["selection-effect", "detection-limit", "signal-to-noise", "parallax", "distance-indicator", "correlated-error", "zero-point"],
+    "advanced": ["likelihood", "prior", "posterior", "inference"]
+  }
+}

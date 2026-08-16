@@ -16,11 +16,23 @@ prerequisites:
   - 年周視差から距離を測る
 glossaryIds:
   - uncertainty
+  - random-error
   - systematic-error
   - signal-to-noise
   - data
   - model
   - parallax
+  - standard-deviation
+  - standard-error
+  - variance
+  - error-propagation
+  - weighted-mean
+  - significant-figures
+  - selection-effect
+  - covariance
+  - likelihood
+  - prior
+  - inference
 claims:
   - status: Established
     text: 独立で小さな測定不確かさは、関数の偏微分を用いた一次近似で伝播できる。
@@ -39,7 +51,7 @@ sources:
     url: https://www.cosmos.esa.int/web/gaia-users/archive
     publisher: European Space Agency
     accessed: "2026-08-15"
-lastReviewed: "2026-08-15"
+lastReviewed: "2026-08-16"
 ---
 
 ## この章の合格条件
@@ -50,6 +62,14 @@ lastReviewed: "2026-08-15"
 2. $d=1000/p$ の不確かさを微分から導く。
 3. 精度の異なる二つの測定を逆分散重みで統合する。
 4. 標本数を増やしても系統誤差が消えない例を示す。
+
+本文末の修了判定では80%以上が必要です。
+
+## このLevelで求める理解
+
+- **Required Now:** 標準偏差・標準誤差・系統誤差を区別し、一次誤差伝播と逆分散重みを計算する。
+- **Preview Only:** 非ガウス分布、相関行列を使う一般式、ベイズ推論、階層モデル。
+- **Returns In:** 距離指標はL2-05〜06、S/Nと検出限界はL2-22〜23、統計推論はLevel 5〜7で再利用する。
 
 ## Layer 1：直感
 
@@ -335,3 +355,7 @@ $$
 - 品質カットが標本をどう変えるか。
 
 次の定量モジュールでは、フラックス、光度、等級を扱い、逆二乗則から天体の固有の明るさを推定します。
+
+## 次の章とのつながり
+
+次の「標準光源と標準物差し」では、ここで学んだ不確かさを保ちながら、視差で直接届かない距離へ測定の目盛りをつなぎます。

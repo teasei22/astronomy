@@ -19,6 +19,18 @@ glossaryIds:
   - uncertainty
   - telescope
   - parsec
+  - angle
+  - radian
+  - arcminute
+  - arcsecond
+  - milliarcsecond
+  - unit-conversion
+  - small-angle-approximation
+  - angular-diameter
+  - psf
+  - resolution
+  - diffraction
+  - significant-figures
 claims:
   - status: Established
     text: ラジアンで表した十分小さい角度では、弧長は距離と角度の積で近似できる。
@@ -33,7 +45,7 @@ sources:
     url: https://www.esa.int/Science_Exploration/Space_Science/Gaia/Mapping_the_stars_of_the_Milky_Way
     publisher: European Space Agency
     accessed: "2026-08-15"
-lastReviewed: "2026-08-15"
+lastReviewed: "2026-08-16"
 ---
 
 ## この章の合格条件
@@ -45,6 +57,12 @@ lastReviewed: "2026-08-15"
 3. 距離と角直径を与えられた天体の実直径を、単位を保って計算する。
 
 本文末の修了判定では、選択問題と数値問題の両方で80%以上が必要です。
+
+## このLevelで求める理解
+
+- **Required Now:** 角度単位を換算し、小角近似を導出して、距離と角直径から実寸を計算する。
+- **Preview Only:** PSFの数値モデル、回折限界の導出、相関を含む誤差伝播。
+- **Returns In:** 空の座標はL2-01〜03、視差はL2-04、望遠鏡の分解能とPSFはL2-17〜19で再利用する。
 
 ## 前提確認
 
@@ -250,4 +268,4 @@ $$
 
 ## 次の章とのつながり
 
-角度を距離へ変えるには、もう一つの幾何が必要です。次の「年周視差から距離を測る」では、地球公転軌道の既知の長さと恒星の方向変化から、パーセク単位の距離式を導きます。
+角度を測る準備ができました。次の「地平座標と日周運動」では、地平線からの角度と北からの角度を使い、観測者から見た天体の方向を時刻つきで記録します。

@@ -5,7 +5,7 @@
 ## 現在の初期実装
 
 - Level 0–7の到達経路を設計し、教材は学習テストを通した単位で段階公開
-- Level 0–2 の33レッスン。Level 0は全18章、Level 1は全12章を公開し、予想・証拠・解説・4軸診断を実装。Level 2は数式導出、数値演習、80%修了判定を実装
+- Level 0–2 の38レッスン。Level 0は全18章、Level 1は全12章、Level 2 Course 2Aは全8章を公開。Level 2では数式導出、数値演習、80%修了判定を実装
 - 学習ダッシュボード、依存関係付きロードマップ
 - 各Levelの到達能力・Prerequisites・領域色、参照大学と評価証拠を示すCurriculum Standard
 - 検索可能な日英用語集
@@ -15,7 +15,7 @@
 
 ## 現在のマイルストーン
 
-全225学習単位の依存関係を確定し、Level 1の全12章を制作基準に沿って実装しています。現在はL1-01〜12の作者通し履修が次のゲートです。再現した問題を本文だけでなくLesson Standardと依存関係へ戻してからLevel 2の本制作へ進みます。
+全225学習単位の依存関係を確定し、Level 2 Course 2A「空の位置・時刻・距離」までを制作基準に沿って実装しています。次のゲートはCourse 2Aの作者通し履修です。再現した問題を本文だけでなくLesson Standardと依存関係へ戻してからCourse 2B「光を測る」へ進みます。
 
 Level 0のpilot検証も並行して継続します。実施手順は`validation/README.md`、並行評価は`validation/level-0-assessment.md`、Lessonごとの記録用紙は`validation/level-0-lesson-log.csv`を参照してください。生の参加者ログや個人情報はGitへ保存しません。
 

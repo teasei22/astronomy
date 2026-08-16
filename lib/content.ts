@@ -96,6 +96,11 @@ function validateUniversityContract(meta: LessonMeta, sections: LessonSection[],
     }
   }
   if (meta.level < 2) return;
+  const scope = sections.find((section) => section.title === "このLevelで求める理解");
+  if (!scope || !["Required Now", "Preview Only", "Returns In"].every((label) => scope.markdown.includes(label))) {
+    throw new Error(`${file}: Level 2+ requires Required Now / Preview Only / Returns In`);
+  }
+  if (!lessonExperiences[meta.slug]) throw new Error(`${file}: Level 2+ lessons require a predict-first experience`);
   if (!skillBridges[meta.slug]) throw new Error(`${file}: Level 2+ lessons require a just-in-time math bridge`);
   if (meta.outcomes.length < 4) throw new Error(`${file}: Level 2+ lessons require at least 4 outcomes`);
   if (meta.sources.length < 2) throw new Error(`${file}: Level 2+ lessons require at least 2 sources`);
@@ -104,6 +109,9 @@ function validateUniversityContract(meta: LessonMeta, sections: LessonSection[],
   }
   const questions = quizzes[meta.slug] ?? [];
   if (questions.length < 6) throw new Error(`${file}: Level 2+ lessons require at least 6 mastery questions`);
+  for (const dimension of ["Recall", "Concept", "Reasoning", "Data"] as const) {
+    if (!questions.some((question) => question.type === dimension)) throw new Error(`${file}: Level 2+ lesson is missing ${dimension} diagnosis`);
+  }
   const quantitative = questions.filter((question) => question.kind === "numeric" || question.type === "Data").length;
   if (quantitative < 2) throw new Error(`${file}: Level 2+ lessons require at least 2 numeric or data questions`);
 }

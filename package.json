@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "check:curriculum": "node scripts/check-curriculum-plan.mjs",
-    "check:terminology": "node scripts/check-level-0-terminology.mjs && node scripts/check-level-1-terminology.mjs",
+    "check:terminology": "node scripts/check-level-0-terminology.mjs && node scripts/check-level-1-terminology.mjs && node scripts/check-level-2-terminology.mjs",
     "check:visual": "node scripts/visual-check.mjs",
     "check:smoke": "node scripts/smoke-check.mjs"
   },

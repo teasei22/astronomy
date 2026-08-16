@@ -14,13 +14,22 @@ outcomes:
   - 低S/N、負の視差、ゼロ点偏差で単純な逆数推定が危険な理由を説明できる
 prerequisites:
   - 角度で宇宙を測る
+  - 時刻・恒星時・元期を使い分ける
 glossaryIds:
   - parallax
   - parsec
   - au
+  - distance
+  - milliarcsecond
   - uncertainty
   - signal-to-noise
   - systematic-error
+  - proper-motion
+  - inference
+  - likelihood
+  - prior
+  - zero-point
+  - selection-effect
 claims:
   - status: Established
     text: 年周視差は地球公転による既知の基線を用いる幾何学的な距離測定である。
@@ -39,7 +48,7 @@ sources:
     url: https://arxiv.org/abs/1507.02105
     publisher: Publications of the Astronomical Society of the Pacific
     accessed: "2026-08-15"
-lastReviewed: "2026-08-15"
+lastReviewed: "2026-08-16"
 ---
 
 ## この章の合格条件
@@ -49,6 +58,14 @@ lastReviewed: "2026-08-15"
 1. 視差角の定義を、地球・太陽・恒星・遠方背景を含む図で説明する。
 2. $p=40.0\pm2.0\ \mathrm{mas}$ から距離と近似不確かさを求める。
 3. 負の視差を「負の距離」に変換してはいけない理由を説明する。
+
+本文末の修了判定では80%以上が必要です。
+
+## このLevelで求める理解
+
+- **Required Now:** 視差の半角定義から $d=1/p$ を導き、高S/Nの視差を距離と不確かさへ変換する。
+- **Preview Only:** 低S/Nでの完全なベイズ推論、Gaiaの走査則、空間相関を含むゼロ点モデル。
+- **Returns In:** 誤差伝播はM2-02、距離指標はL2-05、低S/Nと選択バイアスはL2-06で統合する。
 
 ## 観測の配置
 

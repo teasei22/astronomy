@@ -87,7 +87,11 @@ export const levels: LevelSummary[] = [
       { label: "数学: 一次式・グラフ", available: false },
     ],
     courses: [
-      { title: "空の位置・時刻・距離", modules: ["天球と座標", "距離梯子"] },
+      {
+        title: "空の位置・時刻・距離",
+        modules: ["天球と座標", "距離梯子"],
+        lessonCodes: ["M2-01", "L2-01", "L2-02", "L2-03", "L2-04", "M2-02", "L2-05", "L2-06"],
+      },
       { title: "光を測る", modules: ["電磁波", "測光", "分光"] },
       { title: "望遠鏡・検出器・データ", modules: ["光学系", "校正", "データ形式"] },
     ],
@@ -265,8 +269,13 @@ export const availableLessons: LessonSummary[] = [
   { slug: "one-phenomenon-three-methods", code: "L1-11", title: "一つの現象を観測・理論・計算で調べる", duration: 18, availability: "available" },
   { slug: "choosing-methods-for-astronomy-questions", code: "L1-12", title: "問いから信号・装置・専門分野を選ぶ", duration: 20, availability: "available" },
   { slug: "angular-measurement", code: "M2-01", title: "角度で宇宙を測る", duration: 50, availability: "available" },
+  { slug: "horizon-coordinates-and-daily-motion", code: "L2-01", title: "地平座標と空の日周運動", duration: 50, availability: "available" },
+  { slug: "right-ascension-and-declination", code: "L2-02", title: "赤経・赤緯で天体を指定する", duration: 55, availability: "available" },
+  { slug: "astronomical-time-and-epoch", code: "L2-03", title: "時刻・恒星時・元期を使い分ける", duration: 60, availability: "available" },
   { slug: "parallax-distance", code: "L2-04", title: "年周視差から距離を測る", duration: 60, availability: "available" },
   { slug: "measurement-uncertainty", code: "M2-02", title: "測定誤差と推定", duration: 70, availability: "available" },
+  { slug: "standard-candles-and-rulers", code: "L2-05", title: "標準光源と標準物差し", duration: 60, availability: "available" },
+  { slug: "distance-uncertainty-and-bias", code: "L2-06", title: "距離の誤差とバイアス", duration: 65, availability: "available" },
 ];
 
 export const totalLessonCount = levels.reduce((sum, level) => sum + level.lessonCount, 0);
