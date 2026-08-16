@@ -23,7 +23,15 @@ L6 宇宙論
 L7 大学天文学・研究実践
 ```
 
-数学・物理は別の長い関門にせず、各天文学上の問いから Bridge Lesson へ接続する。L7 では、それまでの断片を大学学部レベルの体系へ統合する。
+数学・物理は別の長い関門にせず、各天文学上の問いからBridge Lessonへ接続する。高校数学・高校物理の履修を前提とせず、必要になった概念を意味から導入する。L7で初めて教えるのではなく、L2〜6で使用と再利用を重ね、L7ではそれまでの断片を大学学部レベルの導出・計算・研究実践へ統合する。
+
+計画数はLesson、Bridge、Lab、Capstoneをそれぞれ1学習単位として数える。2026-08-16時点の全計画は**225学習単位**であり、数字を維持するために内容を分割・水増ししない。追加・統合は依存関係と評価証拠を理由に行う。
+
+全Lessonに共通する三つの必須条件:
+
+1. 未知の専門語で未知の概念を説明しない。初出時に本文で説明し、Glossaryへ接続する。
+2. 数学・物理をL7へ先送りしない。L2〜7で必要になる直前に、素人が意味からたどれるBridgeまたは基礎説明を置く。
+3. `Required Now / Preview Only / Returns In`を明示し、そのLevelでどこまでできればよいかを修了問題と一致させる。
 
 ---
 
@@ -68,42 +76,35 @@ L7 大学天文学・研究実践
 
 ## LEVEL 1 — 天文学の地図
 
-対象: 分野の関係と「何をどう調べる学問か」を理解する。
+対象: 分野の関係と「何を、どの信号と方法で調べる学問か」を短いOverviewで理解する。各Lessonは10〜18分を目安とし、施設名や歴史年表の暗記より、次のLevelを選ぶ地図を優先する。
 
 ### Course 1A: 天文学という科学
 
-- Module 1A-1 三つの研究方法
-  - L1-01 観測天文学: 宇宙から届く信号を測る
-  - L1-02 理論天文学: 法則から予測を作る
-  - L1-03 計算天文学: 複雑な宇宙を計算機で試す
-- Module 1A-2 スケール別の分野
-  - L1-04 惑星科学とアストロバイオロジー
-  - L1-05 太陽物理と宇宙天気
-  - L1-06 恒星・星間物質・高エネルギー天文学
-  - L1-07 銀河天文学と宇宙論
-  - L1-08 重力波・ニュートリノ・マルチメッセンジャー
+- Module 1A-1 全体地図と三つの方法
+  - L1-01 天文学の全体地図: 対象・信号・問いをつなぐ
+  - L1-02 観測天文学: 宇宙から届く信号を測る
+  - L1-03 理論天文学: 法則から予測を作る
+  - L1-04 計算天文学: 複雑な宇宙を計算機で試す
 
-### Course 1B: 宇宙観を変えた観測
+### Course 1B: 対象別の専門分野
 
-- Module 1B-1 空の規則性から物理法則へ
-  - L1-09 古代の暦と天球
-  - L1-10 コペルニクス、ティコ、ケプラー
-  - L1-11 ガリレオの望遠鏡とニュートンの重力
-- Module 1B-2 光を分け、見えない宇宙を見る
-  - L1-12 分光学が恒星を物理学へ変えた
-  - L1-13 写真・電波・宇宙望遠鏡
-  - L1-14 銀河の宇宙、CMB、系外惑星、重力波
+- Module 1B-1 惑星から恒星へ
+  - L1-05 惑星科学・系外惑星・アストロバイオロジー
+  - L1-06 太陽・恒星・星間物質
+- Module 1B-2 銀河から宇宙全体へ
+  - L1-07 天の川・銀河・宇宙論
+  - L1-08 高エネルギー・重力波・ニュートリノ
 
-### Course 1C: 現代の観測者たち
+### Course 1C: 証拠が宇宙観を変える
 
-- Module 1C-1 光を集める施設
-  - L1-15 Hubble・JWST・Subaru・VLT
-  - L1-16 ALMA・Chandra と多波長観測
-  - L1-17 Gaia・Kepler・TESS とサーベイ
-- Module 1C-2 光以外の宇宙
-  - L1-18 LIGO・Virgo・KAGRA
-  - L1-19 IceCube とニュートリノ天文学
-  - L1-20 一つの現象を複数のメッセンジャーで調べる
+- Module 1C-1 観測史を証拠の鎖で読む
+  - L1-09 観測が宇宙観を変えた: 軌道・望遠鏡・分光
+  - L1-10 多波長観測・サーベイ・宇宙望遠鏡
+- Module 1C-2 方法を選ぶ
+  - L1-11 一つの現象を観測・理論・計算で調べる
+  - L1-12 問いから必要な信号・装置・専門分野を選ぶ
+
+Level 1では各施設の仕様や人物年表は`Preview Only`とする。修了条件は、新しい天文学の問いを見て「何を測るか」「どの方法で確かめるか」「次にどのLevelへ進むか」を選び、理由を説明できることとする。
 
 ---
 
@@ -112,34 +113,34 @@ L7 大学天文学・研究実践
 ### Course 2A: 空の位置・時刻・距離
 
 - Module 2A-1 天球と座標
+  - Bridge M2-01 角度・三角比・球面の考え方
   - L2-01 地平座標と日周運動
   - L2-02 赤経 RA・赤緯 Dec
   - L2-03 時刻、恒星時、暦、歳差
-  - Bridge M2-01 角度・三角比・球面の考え方
 - Module 2A-2 距離梯子の最初の段
   - L2-04 年周視差
+  - Bridge M2-02 測定値・誤差伝播・重みつき推定
   - L2-05 標準光源と標準物差し
   - L2-06 距離の誤差とバイアス
-  - Bridge M2-02 比例・逆比例・誤差伝播
 
 ### Course 2B: 光を測る
 
 - Module 2B-1 光と電磁波
+  - Bridge P2-01 波・電磁気・量子の入口
   - L2-07 波長・振動数・光子
   - L2-08 電波からガンマ線まで
   - L2-09 大気の窓と宇宙望遠鏡
-  - Bridge P2-01 波・電磁気・量子の入口
 - Module 2B-2 測光
+  - Bridge M2-03 指数・対数・関数・グラフ
   - L2-10 flux・luminosity・逆二乗則
   - L2-11 等級と色指数
   - L2-12 light curve と時間変動
-  - Bridge M2-03 指数・対数・関数・グラフ
 - Module 2B-3 分光
+  - Bridge P2-02 原子・電子・エネルギー準位
   - L2-13 連続スペクトルとスペクトル線
   - L2-14 原子が残す吸収線・輝線
   - L2-15 Doppler shift と redshift
   - L2-16 温度・組成・速度を読む
-  - Bridge P2-02 原子・電子・エネルギー準位
 
 ### Course 2C: 望遠鏡・検出器・データ
 
@@ -150,9 +151,9 @@ L7 大学天文学・研究実践
 - Module 2C-2 検出と校正
   - L2-20 CCD・CMOS・電波受信機
   - L2-21 bias・dark・flat 補正
-  - L2-22 signal-to-noise ratio
-  - L2-23 測定誤差・系統誤差・検出限界
   - Bridge M2-04 平均・標準偏差・正規分布
+  - L2-22 signal-to-noise ratio
+  - L2-23 系統誤差・検出限界・選択効果
 - Module 2C-3 天文データの形
   - L2-24 天体画像と FITS
   - L2-25 天体カタログと CSV
@@ -165,11 +166,12 @@ L7 大学天文学・研究実践
 ### Course 3A: 軌道を支配するもの
 
 - Module 3A-1 運動と重力
+  - Bridge M3-01 変数・グラフ・向きのある量としてのベクトル
   - L3-01 位置・速度・加速度
   - L3-02 力、質量、ニュートンの法則
   - L3-03 万有引力、円運動、脱出速度
+  - Bridge M3-02 変化率としての微分・三角比の再利用
   - L3-04 ケプラーの三法則
-  - Bridge M3-01 ベクトル・微分・面積速度
 - Module 3A-2 天体力学の入口
   - L3-05 エネルギーと軌道
   - L3-06 運動量・角運動量
@@ -183,18 +185,18 @@ L7 大学天文学・研究実践
   - L3-10 衛星・リング・小惑星・彗星
   - L3-11 カイパーベルト・オールト雲
 - Module 3B-2 惑星を比較する
+  - Bridge P3-01 圧力・気体・熱力学・流体
   - L3-12 内部構造と地質活動
   - L3-13 大気・温室効果・気候
   - L3-14 磁気圏と表面環境
-  - Bridge P3-01 圧力・気体・熱力学・流体
 
 ### Course 3C: 太陽と宇宙天気
 
 - Module 3C-1 最も近い恒星
   - L3-15 太陽の層構造とエネルギー源
+  - Bridge P3-02 プラズマと磁場
   - L3-16 黒点・フレア・コロナ加熱
   - L3-17 太陽風・磁気圏・宇宙天気
-  - Bridge P3-02 プラズマと磁場
 
 ### Course 3D: 系外惑星と生命
 
@@ -222,15 +224,17 @@ L7 大学天文学・研究実践
   - L4-04 HR 図を読む
 - Module 4A-2 質量を測る
   - L4-05 連星の種類と軌道
-  - L4-06 質量光度関係
   - Bridge M4-01 回帰・最小二乗法・相関
+  - L4-06 質量光度関係
 
 ### Course 4B: 恒星の内部と一生
 
 - Module 4B-1 恒星構造
+  - Bridge P4-01 圧力勾配・流体・放射輸送・磁場の入口
   - L4-07 静水圧平衡
   - L4-08 理想気体・縮退圧・エネルギー輸送
   - L4-09 核融合と元素合成
+  - Bridge M4-02 勾配・微分・微分方程式の見取り図
   - L4-10 恒星構造方程式の見取り図
 - Module 4B-2 星形成から主系列へ
   - L4-11 分子雲・Jeans 不安定
@@ -259,7 +263,6 @@ L7 大学天文学・研究実践
   - L4-24 原子・分子・電離ガス・ダスト
   - L4-25 H II 領域と超新星残骸
   - L4-26 星形成と feedback の循環
-  - Bridge P4-01 放射輸送・流体・MHD の概念
 
 ---
 
@@ -273,7 +276,7 @@ L7 大学天文学・研究実践
   - L5-03 Gaia が描く位置と運動
   - L5-04 銀河中心の超大質量ブラックホール
 
-### Course 5B: 銀河の多様性と進化
+### Course 5B: 銀河の形成と進化
 
 - Module 5B-1 銀河を分類し測る
   - L5-05 渦巻・楕円・不規則銀河
@@ -281,27 +284,42 @@ L7 大学天文学・研究実践
   - L5-07 星形成率と金属量
 - Module 5B-2 銀河を作り変える過程
   - L5-08 銀河形成と階層的成長
-  - L5-09 衝突・合体・潮汐相互作用
-  - L5-10 AGN・クエーサー・feedback
-  - L5-11 銀河群・銀河団・環境効果
+  - L5-09 衝突・合体・潮汐相互作用・環境効果
 
-### Course 5C: 見えない質量を推定する
+### Course 5C: 活動銀河核・クエーサー
 
-- Module 5C-1 ダークマターの証拠
-  - L5-12 銀河回転曲線
-  - L5-13 銀河団の運動と高温ガス
-  - L5-14 強い・弱い重力レンズ
-  - L5-15 CMB・大規模構造との証拠統合
-  - Bridge M5-01 行列・固有値・ベイズ推論の入口
+- Module 5C-1 銀河中心で起きる高出力現象
+  - L5-10 超大質量ブラックホールへの降着
+  - L5-11 AGN・クエーサーのスペクトルとジェット
+  - L5-12 feedbackと銀河の共進化
 
-### Course 5D: マルチメッセンジャー宇宙
+### Course 5D: ダークマターと重力レンズ
 
-- Module 5D-1 極端な天体現象
-  - L5-16 X 線・ガンマ線天文学
-  - L5-17 gamma-ray burst と kilonova
-  - L5-18 重力波検出器と標準サイレン
-  - L5-19 宇宙線・ニュートリノ・IceCube
-  - L5-20 マルチメッセンジャー事例 GW170817
+- Module 5D-1 運動と質量分布
+  - Bridge M5-01 重力ポテンシャル・円運動・ベクトルの再利用
+  - L5-13 銀河回転曲線
+  - L5-14 銀河団の運動と高温ガス
+- Module 5D-2 光のゆがみから質量を測る
+  - L5-15 強い重力レンズ
+  - Bridge M5-02 行列・尤度・ベイズ推論の入口
+  - L5-16 弱い重力レンズと統計的な形の測定
+  - L5-17 CMB・大規模構造を含む証拠統合と代替説明
+
+### Course 5E: 高エネルギー宇宙
+
+- Module 5E-1 激しい現象を電磁波で調べる
+  - L5-18 X線・ガンマ線の検出と空の見え方
+  - L5-19 X線連星・潮汐破壊現象・降着の時間変動
+  - L5-20 gamma-ray burstとkilonova
+  - L5-21 宇宙線と粒子加速
+
+### Course 5F: 重力波・ニュートリノ・マルチメッセンジャー
+
+- Module 5F-1 光以外の信号を統合する
+  - L5-22 重力波の波形と検出器
+  - L5-23 ニュートリノの発生源と検出
+  - L5-24 到来時刻・方向・誤差領域を組み合わせる
+  - L5-25 事例研究: GW170817の証拠の鎖
 
 ---
 
@@ -314,8 +332,9 @@ L7 大学天文学・研究実践
   - L6-02 宇宙膨張は何が広がることか
   - L6-03 cosmic distance ladder
   - L6-04 標準光源・標準物差し・標準サイレン
-  - Bridge M6-01 微分方程式とスケール因子
+  - Bridge M6-01 積分・微分方程式とスケール因子
 - Module 6A-2 時空の力学
+  - Bridge P6-01 特殊相対論の復習・等価原理・曲がった時空の入口
   - L6-05 等価原理と曲がった時空
   - L6-06 Friedmann 方程式の物理的意味
   - L6-07 臨界密度と宇宙の幾何
@@ -363,48 +382,49 @@ L7 大学天文学・研究実践
   - L7-07 放射過程: thermal・synchrotron・Compton
   - L7-08 放射輸送方程式と optical depth
   - L7-09 恒星構造方程式の導出と数値解
-
-### Course 7B: 統計・計算・観測データ解析
-
-- Module 7B-1 統計的推論
+- Module 7A-3 統計的推論
   - L7-10 確率分布・尤度・最尤法
   - L7-11 回帰・curve fitting・最小二乗法
   - L7-12 confidence interval・hypothesis test
   - L7-13 Bayes theorem・prior・posterior
   - L7-14 selection effect・censoring・systematic error
-- Module 7B-2 計算天文学
-  - L7-15 浮動小数点・補間・積分・ODE
-  - L7-16 Monte Carlo と bootstrap
-  - L7-17 N-body simulation
-  - L7-18 数値流体・格子法・粒子法の概観
-  - L7-19 再現可能性・version control・環境
-- Module 7B-3 観測解析
-  - L7-20 Python・NumPy・pandas・matplotlib
-  - L7-21 Astropy、unit、coordinate、time
+
+### Course 7B: Computational Astronomy
+
+- Module 7B-1 科学計算の道具
+  - L7-15 Python・NumPy・pandas・matplotlib
+  - L7-16 Astropy、unit、coordinate、time
+  - L7-17 再現可能性・version control・環境
+- Module 7B-2 数値計算
+  - L7-18 浮動小数点・補間・積分・ODE
+  - L7-19 Monte Carloとbootstrap
+  - L7-20 N-body simulation
+  - L7-21 数値流体・格子法・粒子法の概観
+- Module 7B-3 計算Practice Lab
+  - LAB-01 AUと光年を変換する
+  - LAB-02 惑星データを表にする
+  - LAB-03 惑星軌道をプロットする
+  - LAB-14 簡単なN-body simulation
+
+### Course 7C: Observational Data Analysis
+
+- Module 7C-1 解析パイプライン
   - L7-22 FITS image reduction・photometry
   - L7-23 spectrum reduction・redshift fitting
   - L7-24 time series・periodogram・transit fitting
   - L7-25 catalog・SQL・ADQL・cross-match
-
-### Course 7C: Astronomy Lab
-
-- Module 7C-1 基礎 Python
-  - LAB-01 AU と光年を変換する
-  - LAB-02 惑星データを表にする
-  - LAB-03 惑星軌道をプロットする
-- Module 7C-2 恒星と時系列
+- Module 7C-2 恒星・時系列Practice Lab
   - LAB-04 恒星データを散布図にする
   - LAB-05 HR 図を作る
   - LAB-06 light curve を描く
   - LAB-07 transit を検出する
   - LAB-08 系外惑星候補を比較する
-- Module 7C-3 カタログ・スペクトル・シミュレーション
+- Module 7C-3 カタログ・スペクトルPractice Lab
   - LAB-09 天体カタログを検索する
   - LAB-10 Gaia データを可視化する
   - LAB-11 spectrum を描く
   - LAB-12 redshift を推定する
   - LAB-13 銀河データを分析する
-  - LAB-14 簡単な N-body simulation
 
 ### Course 7D: 論文と研究リテラシー
 
@@ -440,15 +460,15 @@ L7 大学天文学・研究実践
 | 天文学概論・歴史 | L0, L1 |
 | 位置天文・時刻・天体力学 | L2A, L3A, L7A |
 | 観測・望遠鏡・装置 | L2B–C |
-| 数学・基礎物理 | 各 Bridge, L7A–B |
+| 数学・基礎物理 | L2〜L6の各Bridge, L7A–B |
 | 太陽・惑星・系外惑星 | L3B–D |
 | 恒星・恒星進化・星間物質 | L4A–D |
-| コンパクト天体・高エネルギー | L4C, L5D |
+| コンパクト天体・高エネルギー | L4C, L5C, L5E |
 | 銀河・銀河団・銀河進化 | L5A–B |
-| ダークマター・重力レンズ | L5C |
+| ダークマター・重力レンズ | L5D |
 | 宇宙論・CMB・元素合成 | L6A–C |
-| 重力波・ニュートリノ | L1C, L5D |
-| 統計・計算・数値 simulation | L7B–C |
+| 重力波・ニュートリノ | L1B, L5F |
+| 統計・計算・数値 simulation | L2C, L4A, L5D, L7A–B |
 | 公開データ解析 | L7B–C |
 | 論文読解・研究倫理・不確実性 | L7D |
 | 観測実習・課題研究 | LAB, Capstone |
@@ -459,5 +479,7 @@ L7 大学天文学・研究実践
 - 京都大学理学部: https://sci.kyoto-u.ac.jp/ja/education/undergraduate/divisions
 - Harvard Department of Astronomy: https://astronomy.fas.harvard.edu/concentration-requirements
 - University of Arizona Steward Observatory: https://astro.arizona.edu/academics/undergraduate/4-year-plan-astronomy-degree
+- MIT Course Catalog, Minor in Astronomy: https://catalog.mit.edu/interdisciplinary/undergraduate-programs/minors/astronomy/
+- MIT Course Catalog, Physics subjects 8.282・8.284・8.286: https://catalog.mit.edu/schools/science/physics/
 
-参照確認日: 2026-08-15
+参照確認日: 2026-08-16

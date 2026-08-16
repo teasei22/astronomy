@@ -23,6 +23,7 @@ app/                 画面とルーティング
 components/          UI、教材ブロック、インタラクティブ実験
 content/level-N/     Markdown レッスン
 data/                カリキュラム、用語、施設、データセット定義
+CURRICULUM.md         Lesson / Bridge / Lab / Capstoneの正規計画
 data/lesson-experiences.ts  本文前の予想・証拠シナリオ
 data/skill-bridges.ts       必要時に開く数学・物理の短い復習
 data/curriculum-standard.ts 学部相当を判定する領域・評価証拠・参照大学
@@ -32,6 +33,7 @@ lib/data-sources/    外部アーカイブ用アダプター
 public/data/         小規模で出典付きの教材用サンプル
 public/images/       画像とクレジットメタデータ
 validation/          手動pilotの実施手順、並行評価、匿名化レポート雛形
+scripts/check-curriculum-plan.mjs  計画ID・件数・公開Lesson対応の検査
 ```
 
 ## 4. コンテンツ契約
@@ -57,6 +59,8 @@ type LessonMeta = {
 ```
 
 frontmatter を実行時スキーマで検証する。slug の重複、存在しない前提レッスン、未登録用語、取得日のない可変情報を CI で失敗させる。
+
+本文の早い位置で`Required Now / Preview Only / Returns In`を示す。将来frontmatterへ構造化するときも、本文に学習要求が見えることを省略しない。
 
 Levelは説明文だけでなく、観察可能な行動で書く `capabilities` と、公開状態・復習先を持つ `prerequisites` を必須とする。Level色は基礎、科学的方法、観測、惑星・軌道、恒星、銀河、宇宙論、研究の領域識別に一貫して使う。
 
@@ -150,3 +154,5 @@ type DataEnvelope<T> = {
 - ADR-002: 数値・用語・進捗は構造化データ、説明は Markdown に置く。
 - ADR-003: 外部データは必ず provenance envelope 付きで返す。
 - ADR-004: 初期版の Lab は説明・コード・可視化を同梱し、ブラウザ内 Python 実行は後続フェーズにする。
+- ADR-005: 教材総数を先に固定しない。`CURRICULUM.md`の一意な学習単位を数え、`data/curriculum.ts`との一致を自動検査する。
+- ADR-006: 数学・物理はL2〜6の初出直前に導入し、L7では初出ではなく導出・計算・研究利用へ統合する。

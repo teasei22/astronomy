@@ -17,6 +17,7 @@ glossaryIds:
   - atmosphere
   - altitude
   - density
+  - air-pressure
   - karman-line
   - air-drag
   - low-earth-orbit
@@ -38,7 +39,7 @@ sources:
     url: https://science.nasa.gov/earth/earth-atmosphere/earths-atmosphere-a-multi-layered-cake/
     publisher: NASA Science
     accessed: "2026-08-15"
-lastReviewed: "2026-08-15"
+lastReviewed: "2026-08-16"
 ---
 
 ## この章で何が分かるようになるか
@@ -63,7 +64,7 @@ lastReviewed: "2026-08-15"
 
 ## Layer 2：大学入門
 
-空気がどれだけ詰まっているかを**密度**と呼びます。高度が上がるほど、上から押さえる空気の量が減るため、大気の密度は小さくなります。
+空気がどれだけ詰まっているかを**密度**と呼びます。地球の重力によって、大気は地表付近ほど多く集まっています。高度が上がるほど、その場所より上にある空気の量と、空気が押す強さである気圧が小さくなり、一般に大気の密度も低くなります。温度によっても密度の下がり方は変わりますが、Level 0では「重力のもとで、大気は地表付近ほど密に集まる」と理解できれば十分です。
 
 飛行機の翼は、周囲の空気を押し、その反作用として上向きの力を受けます。高度が非常に高くなると空気が薄すぎて、翼だけで飛び続けることが難しくなります。カーマン・ラインは、このような空気中の飛行と宇宙飛行を分ける目安として使われてきました。
 

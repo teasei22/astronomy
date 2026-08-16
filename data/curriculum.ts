@@ -50,7 +50,7 @@ export const levels: LevelSummary[] = [
     domain: "科学的方法",
     description: "観測・理論・計算と、惑星から宇宙論までの分野がどう接続するかを見渡します。",
     accent: "#f6c85f",
-    lessonCount: 20,
+    lessonCount: 12,
     capabilities: [
       "観測・理論・計算の役割と、互いに検証し合う関係を説明できる",
       "惑星・恒星・銀河・宇宙論を、対象スケールと観測手段で位置づけられる",
@@ -61,9 +61,9 @@ export const levels: LevelSummary[] = [
       { label: "Level 0: 宇宙の階層・光・証拠", href: "/roadmap#level-0", available: true },
     ],
     courses: [
-      { title: "天文学という科学", modules: ["三つの研究方法", "スケール別の分野"] },
-      { title: "宇宙観を変えた観測", modules: ["空の規則性から物理法則へ", "見えない宇宙を見る"] },
-      { title: "現代の観測者たち", modules: ["光を集める施設", "光以外の宇宙"] },
+      { title: "天文学という科学", modules: ["全体地図", "観測・理論・計算"] },
+      { title: "対象別の専門分野", modules: ["惑星から恒星へ", "銀河から宇宙全体へ"] },
+      { title: "証拠が宇宙観を変える", modules: ["観測史を証拠で読む", "問いから方法を選ぶ"] },
     ],
   },
   {
@@ -73,7 +73,7 @@ export const levels: LevelSummary[] = [
     domain: "観測",
     description: "座標、距離、光、望遠鏡、測光、分光、誤差を、実際に何を測るかから学びます。",
     accent: "#ef8354",
-    lessonCount: 30,
+    lessonCount: 32,
     capabilities: [
       "天球上の位置・角度・時刻を単位つきで扱える",
       "年周視差と距離梯子の適用範囲を判断し、距離と不確かさを計算できる",
@@ -126,7 +126,7 @@ export const levels: LevelSummary[] = [
     domain: "恒星",
     description: "光から恒星の内部と一生を推理し、白色矮星・中性子星・ブラックホールまで追います。",
     accent: "#f38ba8",
-    lessonCount: 30,
+    lessonCount: 29,
     capabilities: [
       "HR図を読み、恒星の色・温度・光度・半径の関係を説明できる",
       "恒星スペクトルから温度・組成・運動の基本情報を読み取れる",
@@ -154,7 +154,7 @@ export const levels: LevelSummary[] = [
     domain: "銀河",
     description: "天の川、銀河進化、ダークマターの複数証拠、重力波とニュートリノを統合します。",
     accent: "#a7c957",
-    lessonCount: 22,
+    lessonCount: 27,
     capabilities: [
       "Gaiaなどの位置・運動データから天の川銀河の構造を説明できる",
       "銀河の形態・色・星形成率・環境を比較し、進化の仮説を評価できる",
@@ -169,9 +169,11 @@ export const levels: LevelSummary[] = [
     ],
     courses: [
       { title: "天の川銀河", modules: ["構造", "Gaia", "銀河中心"] },
-      { title: "銀河の多様性と進化", modules: ["分類と測定", "形成と相互作用"] },
-      { title: "見えない質量", modules: ["回転曲線", "銀河団", "重力レンズ"] },
-      { title: "マルチメッセンジャー", modules: ["高エネルギー", "重力波・ニュートリノ"] },
+      { title: "銀河の形成と進化", modules: ["分類と測定", "形成と相互作用"] },
+      { title: "活動銀河核・クエーサー", modules: ["降着", "ジェット", "feedback"] },
+      { title: "ダークマターと重力レンズ", modules: ["運動と質量分布", "強い・弱いレンズ"] },
+      { title: "高エネルギー宇宙", modules: ["X線・ガンマ線", "爆発・宇宙線"] },
+      { title: "重力波・ニュートリノ・マルチメッセンジャー", modules: ["非電磁波信号", "証拠統合"] },
     ],
   },
   {
@@ -181,7 +183,7 @@ export const levels: LevelSummary[] = [
     domain: "宇宙論",
     description: "膨張、CMB、元素合成、大規模構造から ΛCDM と現代の未解決問題を評価します。",
     accent: "#c3a6ff",
-    lessonCount: 24,
+    lessonCount: 25,
     capabilities: [
       "赤方偏移・距離・膨張率の関係と、複数の宇宙論的距離を区別できる",
       "膨張宇宙の熱史をたどり、元素合成・CMB・大規模構造の証拠を説明できる",
@@ -208,7 +210,7 @@ export const levels: LevelSummary[] = [
     domain: "研究",
     description: "放射・流体・統計・計算を統合し、公開データ、論文、再現可能な小規模研究へ進みます。",
     accent: "#ff8f70",
-    lessonCount: 58,
+    lessonCount: 53,
     capabilities: [
       "放射・流体・統計の基礎モデルを導出し、仮定と適用限界を説明できる",
       "Python・Astropy・FITSを用いて、再現可能な解析手順を作成できる",
@@ -222,9 +224,9 @@ export const levels: LevelSummary[] = [
       { label: "計算: Pythonの基本操作", href: "/lab", available: true },
     ],
     courses: [
-      { title: "理論基礎", modules: ["放射過程", "流体・プラズマ", "統計推論"] },
-      { title: "Computational Astronomy", modules: ["Python・Astropy・FITS", "数値計算", "再現可能な環境"] },
-      { title: "Observational Data Analysis", modules: ["画像", "スペクトル", "Light Curve", "Catalog"] },
+      { title: "理論基礎", modules: ["力学・流体・プラズマ", "物質と放射", "統計推論"] },
+      { title: "Computational Astronomy", modules: ["Python・Astropy", "数値計算", "計算Practice Lab"] },
+      { title: "Observational Data Analysis", modules: ["解析パイプライン", "画像・スペクトル・Light Curve・Catalog"] },
       { title: "Research Literacy", modules: ["論文・arXiv・ADS", "統計的有意性", "主張と引用"] },
       { title: "Capstone", modules: ["問いの設計", "実データ解析", "研究レポート"] },
     ],

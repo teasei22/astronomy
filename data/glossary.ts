@@ -66,6 +66,7 @@ export const glossary: GlossaryEntry[] = [
   { id: "atmosphere", termJa: "大気", termEn: "Atmosphere", definition: "天体を取り囲み、重力によって保たれている気体の層。地球では高度が上がるほど次第に薄くなります。", level: 0, category: "physics" },
   { id: "altitude", termJa: "高度", termEn: "Altitude", definition: "基準となる面から上向きに測った高さ。地球では平均海面を基準にすることが一般的です。", level: 0, category: "scale" },
   { id: "density", termJa: "密度", termEn: "Density", definition: "同じ大きさの空間に、どれだけの物質が詰まっているかを表す量。より正確には、一定の体積に入る質量で表します。", level: 0, category: "physics" },
+  { id: "air-pressure", termJa: "気圧", termEn: "Air pressure", definition: "空気が物体や地面を押す強さ。地球では一般に、高度が上がるほど小さくなります。", level: 0, category: "physics" },
   { id: "karman-line", termJa: "カーマン・ライン", termEn: "Karman line", definition: "国際的によく使われる高度100 kmの宇宙との境界。大気が突然消える物理的な壁ではなく、活動を分類するための取り決めです。", level: 0, category: "research" },
   { id: "air-drag", termJa: "空気抵抗", termEn: "Atmospheric drag", definition: "物体が気体の中を進むとき、進行を妨げる向きに受ける力。非常に薄い大気でも人工衛星の軌道へ長期的に影響します。", level: 0, category: "physics" },
   { id: "low-earth-orbit", termJa: "低地球軌道", termEn: "Low Earth orbit", abbr: "LEO", definition: "地球に比較的近い人工衛星の軌道領域。国際宇宙ステーションもこの領域を回っています。", level: 0, category: "scale" },

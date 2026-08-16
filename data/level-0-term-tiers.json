@@ -2,7 +2,7 @@
   "where-space-begins": {
     "code": "L0-01",
     "core": ["atmosphere", "altitude", "density", "karman-line"],
-    "supporting": ["air-drag", "convention", "orbit", "international-space-station"],
+    "supporting": ["air-pressure", "air-drag", "convention", "orbit", "international-space-station"],
     "advanced": ["low-earth-orbit", "magnetic-field"]
   },
   "earth-moon-sun-scale": {

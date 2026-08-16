@@ -23,7 +23,9 @@ try {
     ["choosing-cosmic-distance-units", "km・AU・光年を使い分ける"],
     ["parsec-and-prefixes", "pc・kpc・Mpc・Gpcを読む"],
     ["apparent-and-physical-size", "見かけの大きさと本当の大きさ"],
+    ["light-is-a-time-machine", "光は宇宙のタイムマシン"],
     ["cosmic-history-timeline", "138億年の宇宙史を一本にする"],
+    ["observable-universe", "観測可能な宇宙とは"],
     ["reading-cosmic-signals", "宇宙から届く信号を読む"],
     ["levels-of-scientific-confidence", "どこまで確かに言える？"],
     ["light-year-is-distance", "光年は時間ではなく距離"],
@@ -41,13 +43,19 @@ try {
     await page.getByRole("button", { name: "採点する" }).waitFor();
   }
   await page.goto("http://localhost:3000/learn/where-space-begins", { waitUntil: "networkidle" });
+  assert.equal(await page.locator(".prose-lesson").getByText(/地球の重力によって、大気は地表付近ほど多く集まっています。/).count(), 1, "L0-01 should connect atmospheric density to gravity and pressure");
   const firstLessonGlossary = page.locator("section[aria-labelledby='lesson-glossary-title']");
+  await firstLessonGlossary.getByText("気圧", { exact: true }).waitFor();
   await firstLessonGlossary.getByText("カーマン・ライン", { exact: true }).waitFor();
   await firstLessonGlossary.getByText("空気抵抗", { exact: true }).waitFor();
   await page.goto("http://localhost:3000/learn/cosmic-history-timeline", { waitUntil: "networkidle" });
   const timelineGlossary = page.locator("section[aria-labelledby='lesson-glossary-title']");
   await timelineGlossary.getByText("再結合", { exact: true }).waitFor();
   await timelineGlossary.getByText("放射年代測定", { exact: true }).waitFor();
+
+  await page.goto("http://localhost:3000/learn/observable-universe", { waitUntil: "networkidle" });
+  assert.equal(await page.getByText("Level 0の合格ライン", { exact: true }).count(), 1, "L0-12 should state the Level 0 completion boundary");
+  assert.equal(await page.locator(".prose-lesson").getByText(/光が138億年間に465億光年を走った.*ではありません。/).count(), 1, "L0-12 should distinguish light-travel time from current distance");
 
   await page.goto("http://localhost:3000/learn/edge-of-solar-system", { waitUntil: "networkidle" });
   const heliopauseLink = page.locator(".prose-lesson a.glossary-link[href='/glossary#heliopause']");
@@ -145,9 +153,15 @@ try {
   await page.getByText("6/6 公開", { exact: true }).first().waitFor();
   assert.equal(await page.getByText("6/6 公開", { exact: true }).count(), 3, "all three Level 0 courses should be complete");
   await page.getByText("公開 18", { exact: true }).waitFor();
+  await page.locator("#level-1 > button").click();
+  await page.getByText("Course 1B · 対象別の専門分野", { exact: true }).waitFor();
+  await page.getByText("Course 1C · 証拠が宇宙観を変える", { exact: true }).waitFor();
   await page.locator("#level-4 > button").click();
   await page.getByText("HR図を読み、恒星の色・温度・光度・半径の関係を説明できる", { exact: true }).waitFor();
   await page.getByText("数学: 対数・指数関数・微分", { exact: true }).waitFor();
+  await page.locator("#level-5 > button").click();
+  await page.getByText("Course 5C · 活動銀河核・クエーサー", { exact: true }).waitFor();
+  await page.getByText("Course 5F · 重力波・ニュートリノ・マルチメッセンジャー", { exact: true }).waitFor();
   await page.locator("#level-7 > button").click();
   await page.getByText("Course 7B · Computational Astronomy", { exact: true }).waitFor();
   await page.getByText("Course 7E · Capstone", { exact: true }).waitFor();
