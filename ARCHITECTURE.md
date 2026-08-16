@@ -60,6 +60,8 @@ type LessonMeta = {
 
 frontmatter を実行時スキーマで検証する。slug の重複、存在しない前提レッスン、未登録用語、取得日のない可変情報を CI で失敗させる。
 
+Course 1AはLevel 1以降の基準実装とする。4章すべてにPredict First、Recall / Concept / Reasoning / Dataを含む5問以上の診断、独力演習と解答、`Required Now / Preview Only / Returns In`を必須とし、`lib/content.ts`でビルド時に検証する。専門語のCORE / SUPPORTING / ADVANCED分類とGlossary・診断topicの対応は`data/level-1-term-tiers.json`で監査する。
+
 本文の早い位置で`Required Now / Preview Only / Returns In`を示す。将来frontmatterへ構造化するときも、本文に学習要求が見えることを省略しない。
 
 Levelは説明文だけでなく、観察可能な行動で書く `capabilities` と、公開状態・復習先を持つ `prerequisites` を必須とする。Level色は基礎、科学的方法、観測、惑星・軌道、恒星、銀河、宇宙論、研究の領域識別に一貫して使う。

@@ -42,6 +42,33 @@ try {
     assert(await page.locator(".prose-lesson .glossary-link").count() > 0, `${slug} should link its first glossary term from the lesson body`);
     await page.getByRole("button", { name: "採点する" }).waitFor();
   }
+
+  const course1ALessons = [
+    ["map-of-astronomy", "天文学の全体地図"],
+    ["observational-astronomy", "観測天文学：届いた信号を測る"],
+    ["theoretical-astronomy", "理論天文学：法則から予測を作る"],
+    ["computational-astronomy", "計算天文学：複雑な宇宙を計算機で試す"],
+  ];
+  for (const [slug, title] of course1ALessons) {
+    await page.goto(`http://localhost:3000/learn/${slug}`, { waitUntil: "networkidle" });
+    await page.getByRole("heading", { name: title, exact: true }).waitFor();
+    await page.getByText("PREDICT FIRST", { exact: true }).waitFor();
+    await page.getByRole("heading", { name: "このLevelで求める理解", exact: true }).waitFor();
+    await page.getByText("Required Now:", { exact: true }).waitFor();
+    await page.getByText("Preview Only:", { exact: true }).waitFor();
+    await page.getByText("Returns In:", { exact: true }).waitFor();
+    await page.getByRole("heading", { name: "独力演習の解答", exact: true }).waitFor();
+    await page.locator("section[aria-labelledby='lesson-glossary-title']").waitFor();
+    assert(await page.locator(".prose-lesson .glossary-link").count() > 0, `${slug} should link its first glossary term from the lesson body`);
+    await page.getByRole("button", { name: "採点する" }).waitFor();
+  }
+  await page.goto("http://localhost:3000/learn/map-of-astronomy", { waitUntil: "networkidle" });
+  assert.equal(await page.getByRole("link", { name: /観測天文学：届いた信号を測る/ }).getAttribute("href"), "/learn/observational-astronomy", "L1-01 should continue to L1-02");
+  await page.goto("http://localhost:3000/learn/observational-astronomy", { waitUntil: "networkidle" });
+  const observationExperience = page.locator("section").filter({ hasText: "PREDICT FIRST" }).first();
+  await observationExperience.getByRole("button", { name: /二つへ共通する雲や装置感度の変化/ }).click();
+  for (let index = 0; index < 4; index += 1) await observationExperience.getByRole("button", { name: "証拠を1段見る" }).click();
+  await observationExperience.getByText("証拠の鎖がつながりました。予想と照らし合わせてから解説へ進みます。").waitFor();
   await page.goto("http://localhost:3000/learn/where-space-begins", { waitUntil: "networkidle" });
   assert.equal(await page.locator(".prose-lesson").getByText(/地球の重力によって、大気は地表付近ほど多く集まっています。/).count(), 1, "L0-01 should connect atmospheric density to gravity and pressure");
   const firstLessonGlossary = page.locator("section[aria-labelledby='lesson-glossary-title']");
@@ -149,11 +176,14 @@ try {
   await page.getByRole("link", { name: /光年/ }).first().waitFor();
 
   await page.goto("http://localhost:3000/roadmap", { waitUntil: "networkidle" });
-  await page.getByText("23 教材", { exact: true }).waitFor();
+  await page.getByText("26 教材", { exact: true }).waitFor();
   await page.getByText("6/6 公開", { exact: true }).first().waitFor();
   assert.equal(await page.getByText("6/6 公開", { exact: true }).count(), 3, "all three Level 0 courses should be complete");
   await page.getByText("公開 18", { exact: true }).waitFor();
   await page.locator("#level-1 > button").click();
+  await page.getByText("Course 1A · 天文学という科学", { exact: true }).waitFor();
+  await page.getByText("4/4 公開", { exact: true }).waitFor();
+  await page.getByText("公開 5", { exact: true }).waitFor();
   await page.getByText("Course 1B · 対象別の専門分野", { exact: true }).waitFor();
   await page.getByText("Course 1C · 証拠が宇宙観を変える", { exact: true }).waitFor();
   await page.locator("#level-4 > button").click();
@@ -168,7 +198,7 @@ try {
   await page.getByRole("heading", { name: "ASTRAEAが「学部相当」と呼ぶ条件" }).waitFor();
   assert.equal(await page.getByRole("meter", { name: /公開進捗/ }).count(), 8, "roadmap should show publication progress for every level");
 
-  console.log("smoke-check: all Level 0 courses, glossary links, dynamic home state, learning flow, terminology, answers, diagnosis, curriculum, progress, and search passed");
+  console.log("smoke-check: Level 0 and Course 1A learning flows, glossary links, scope, answers, diagnosis, curriculum, progress, and search passed");
   await context.close();
 } finally {
   await browser.close();

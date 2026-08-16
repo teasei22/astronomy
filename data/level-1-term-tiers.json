@@ -1,0 +1,26 @@
+{
+  "map-of-astronomy": {
+    "code": "L1-01",
+    "core": ["observation", "signal", "model", "simulation"],
+    "supporting": ["planet", "exoplanet", "atmosphere", "star", "galaxy"],
+    "advanced": ["dark-matter", "neutron-star", "gravitational-wave", "multi-messenger-astronomy"]
+  },
+  "observational-astronomy": {
+    "code": "L1-02",
+    "core": ["observation", "signal", "detector", "calibration", "data"],
+    "supporting": ["telescope", "uncertainty", "apparent-brightness", "wavelength", "element", "raw-data", "atmosphere", "model"],
+    "advanced": ["gravitational-wave"]
+  },
+  "theoretical-astronomy": {
+    "code": "L1-03",
+    "core": ["model", "assumption", "prediction", "testable", "observation", "data"],
+    "supporting": ["observable", "evidence", "uncertainty", "signal", "orbit", "calibration"],
+    "advanced": []
+  },
+  "computational-astronomy": {
+    "code": "L1-04",
+    "core": ["simulation", "initial-condition", "parameter", "model"],
+    "supporting": ["data", "observation", "numerical-error", "reproducibility"],
+    "advanced": ["numerical-integration", "simulation-resolution"]
+  }
+}

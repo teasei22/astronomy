@@ -5,7 +5,7 @@
 ## 現在の初期実装
 
 - Level 0–7の到達経路を設計し、教材は学習テストを通した単位で段階公開
-- Level 0–2 の23レッスン。Level 0はCourse 0A・0B・0Cの全18章を連続公開し、予想・証拠・解説・4軸診断、Level 2は数式導出、数値演習、80%修了判定を実装
+- Level 0–2 の26レッスン。Level 0は全18章、Level 1はCourse 1Aの4章とL1-09を公開し、予想・証拠・解説・4軸診断を実装。Level 2は数式導出、数値演習、80%修了判定を実装
 - 学習ダッシュボード、依存関係付きロードマップ
 - 各Levelの到達能力・Prerequisites・領域色、参照大学と評価証拠を示すCurriculum Standard
 - 検索可能な日英用語集
@@ -15,9 +15,9 @@
 
 ## 現在のマイルストーン
 
-次の目標は教材数の追加ではなく、`Level 0 v1.0 pilot-validated`です。Level 1の追加制作は凍結し、作者による18章の通し履修、初学者3〜5人の行動観察、Pre/Post並行評価、7〜14日後の保持確認を行います。
+全225学習単位の依存関係を確定し、Level 1の最初のCourseを制作基準として実装しています。現在は`Course 1A v1 author review`が次のゲートです。L1-01〜04を順番に作者履修し、再現した問題を本文だけでなくLesson Standardと依存関係へ戻してからCourse 1Bへ進みます。
 
-実施手順は`validation/README.md`、並行評価は`validation/level-0-assessment.md`、Lessonごとの記録用紙は`validation/level-0-lesson-log.csv`を参照してください。生の参加者ログや個人情報はGitへ保存しません。
+Level 0のpilot検証も並行して継続します。実施手順は`validation/README.md`、並行評価は`validation/level-0-assessment.md`、Lessonごとの記録用紙は`validation/level-0-lesson-log.csv`を参照してください。生の参加者ログや個人情報はGitへ保存しません。
 
 ## 起動
 
@@ -31,6 +31,8 @@ npm run dev
 ```bash
 npm run typecheck
 npm run lint
+npm run check:curriculum
+npm run check:terminology
 npm run build
 ```
 

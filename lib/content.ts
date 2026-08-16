@@ -71,15 +71,28 @@ function validateMeta(data: unknown, file: string): LessonMeta {
 }
 
 function validateUniversityContract(meta: LessonMeta, sections: LessonSection[], file: string) {
-  if (meta.level === 0) {
+  const isCourse1ABaseline = meta.level === 1 && meta.module === "天文学という科学";
+  if (meta.level === 0 || isCourse1ABaseline) {
+    const contractName = meta.level === 0 ? "Level 0" : "Course 1A";
     const questions = quizzes[meta.slug] ?? [];
-    if (!lessonExperiences[meta.slug]) throw new Error(`${file}: Level 0 lessons require a predict-first experience`);
-    if (questions.length < 5) throw new Error(`${file}: Level 0 lessons require at least 5 diagnostic questions`);
+    if (!lessonExperiences[meta.slug]) throw new Error(`${file}: ${contractName} lessons require a predict-first experience`);
+    if (questions.length < 5) throw new Error(`${file}: ${contractName} lessons require at least 5 diagnostic questions`);
     for (const dimension of ["Recall", "Concept", "Reasoning", "Data"] as const) {
-      if (!questions.some((question) => question.type === dimension)) throw new Error(`${file}: Level 0 lesson is missing ${dimension} diagnosis`);
+      if (!questions.some((question) => question.type === dimension)) throw new Error(`${file}: ${contractName} lesson is missing ${dimension} diagnosis`);
     }
+  }
+  if (meta.level === 0) {
     for (const required of ["練習問題", "練習問題の解答", "発展問題", "発展問題の解答"]) {
       if (!sections.some((section) => section.title === required)) throw new Error(`${file}: Level 0 lesson is missing ${required}`);
+    }
+  }
+  if (isCourse1ABaseline) {
+    const scope = sections.find((section) => section.title === "このLevelで求める理解");
+    if (!scope || !["Required Now", "Preview Only", "Returns In"].every((label) => scope.markdown.includes(label))) {
+      throw new Error(`${file}: Course 1A requires Required Now / Preview Only / Returns In`);
+    }
+    for (const required of ["独力演習", "独力演習の解答"]) {
+      if (!sections.some((section) => section.title === required)) throw new Error(`${file}: Course 1A lesson is missing ${required}`);
     }
   }
   if (meta.level < 2) return;
