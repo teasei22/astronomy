@@ -63,6 +63,12 @@ try {
     await page.getByRole("button", { name: "採点する" }).waitFor();
   }
   await page.goto("http://localhost:3000/learn/map-of-astronomy", { waitUntil: "networkidle" });
+  assert.equal(await page.locator(".prose-lesson").getByText(/この三つは完全に独立した分類ではありません。/).count(), 1, "L1-01 should state that computation overlaps observation and theory");
+  assert.equal(await page.locator(".prose-lesson").getByText(/大きさ順の宇宙階層と同じ分類ではなく/).count(), 1, "L1-01 should distinguish research domains from the cosmic size hierarchy");
+  await page.locator("summary").filter({ hasText: "Layer 3：大学天文学への見通し" }).waitFor();
+  assert.equal(await page.locator(".prose-lesson pre").filter({ hasText: "モデルを修正 / 次の観測を設計" }).count(), 1, "L1-01 should show a cyclic evidence process");
+  await page.getByRole("button", { name: "A 恒星", exact: true }).waitFor();
+  assert.equal(await page.getByText("天文学の主要分野を、調べる対象の大きさで分類できる", { exact: true }).count(), 0, "L1-01 should not classify research fields only by object size");
   assert.equal(await page.getByRole("link", { name: /観測天文学：届いた信号を測る/ }).getAttribute("href"), "/learn/observational-astronomy", "L1-01 should continue to L1-02");
   await page.goto("http://localhost:3000/learn/observational-astronomy", { waitUntil: "networkidle" });
   const observationExperience = page.locator("section").filter({ hasText: "PREDICT FIRST" }).first();

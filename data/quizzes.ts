@@ -989,11 +989,11 @@ export const quizzes: Record<string, QuizQuestion[]> = {
     },
     {
       type: "Reasoning",
-      prompt: "計算機が作った銀河画像について、最初に確認することは？",
-      options: ["色が好みか", "観測データか、モデルから作ったシミュレーションか", "ファイル容量だけ", "最も有名な研究者が作ったか"],
-      correct: 1,
-      explanations: ["見た目の好みは証拠になりません。", "正解。データの出所と作り方を区別します。", "容量は科学的な出所を示しません。", "権威ではなく手順と証拠を確認します。"],
-      topicIds: ["simulation", "data", "evidence"],
+      prompt: "『恒星が一生の最後にどう変化するか』を調べたいとき、対象の地図で最初に選ぶものは？",
+      options: ["恒星", "惑星の大気", "銀河全体", "観測装置だけ"],
+      correct: 0,
+      explanations: ["正解。主な研究対象は恒星です。そのうえで観測・理論・計算を組み合わせます。", "惑星ではなく恒星自身の変化を問うています。", "銀河より直接には恒星を対象にします。", "装置は調べる方法に関わり、研究対象そのものではありません。"],
+      topicIds: ["star", "observation", "model"],
     },
   ],
   "observational-astronomy": [

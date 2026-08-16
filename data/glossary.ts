@@ -131,6 +131,7 @@ export const glossary: GlossaryEntry[] = [
   { id: "luminosity-distance", termJa: "光度距離", termEn: "Luminosity distance", definition: "天体が本来放つ光の量と、観測者が受け取る光の量の関係から定義する距離。", level: 0, category: "cosmology" },
   { id: "observation", termJa: "観測", termEn: "Observation", definition: "装置と手順を用いて、宇宙から届く信号を測ること。", level: 0, category: "research" },
   { id: "data", termJa: "データ", termEn: "Data", definition: "観測や計算で得た測定値と、それに付随する条件・不確かさの記録。", level: 0, category: "research" },
+  { id: "theory", termJa: "理論", termEn: "Theory", definition: "物理法則と明示した仮定を使い、観測された現象を説明し、まだ測っていない結果を予測する体系。", level: 1, category: "research" },
   { id: "model", termJa: "モデル", termEn: "Model", definition: "現象の重要な要素を選び、説明や予測に使える形にした表現。", level: 0, category: "research" },
   { id: "prediction", termJa: "予測", termEn: "Prediction", definition: "モデルが正しいと仮定したとき、まだ結果を合わせていない観測で何が測れるはずかを示したもの。", level: 1, category: "research" },
   { id: "assumption", termJa: "仮定", termEn: "Assumption", definition: "モデルを作るときに、まず成り立つものとして置く条件。どの仮定を置いたかを明示し、観測で妥当性を確かめます。", level: 1, category: "research" },

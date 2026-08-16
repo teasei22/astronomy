@@ -359,7 +359,7 @@ export const lessonExperiences: Record<string, LessonExperience> = {
     evidence: [
       { label: "観測", detail: "惑星が恒星の手前を通る前後で、届く光を測ります。" },
       { label: "理論", detail: "水蒸気があるなら、どの光がどれだけ変わるかを予測します。" },
-      { label: "計算", detail: "温度や雲などの条件を変え、多数の予測をデータと比べます。" },
+      { label: "計算は両方に重なる", detail: "観測データを解析し、温度や雲などの条件を変えた理論予測と比べます。" },
       { label: "再観測", detail: "別の時期や装置でも同じ特徴が出るかを確かめます。" },
     ],
   },

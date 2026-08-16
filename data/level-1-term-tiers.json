@@ -1,9 +1,9 @@
 {
   "map-of-astronomy": {
     "code": "L1-01",
-    "core": ["observation", "signal", "model", "simulation"],
-    "supporting": ["planet", "exoplanet", "atmosphere", "star", "galaxy"],
-    "advanced": ["dark-matter", "neutron-star", "gravitational-wave", "multi-messenger-astronomy"]
+    "core": ["observation", "theory", "model", "simulation"],
+    "supporting": ["signal", "planet", "exoplanet", "atmosphere", "star", "galaxy"],
+    "advanced": []
   },
   "observational-astronomy": {
     "code": "L1-02",
