@@ -46,5 +46,29 @@
     "core": ["high-energy-astronomy", "messenger", "gravitational-wave", "neutrino", "multi-messenger-astronomy"],
     "supporting": ["electromagnetic-wave", "x-ray", "gamma-ray", "cosmic-ray", "black-hole", "neutron-star"],
     "advanced": ["supernova"]
+  },
+  "history-of-evidence": {
+    "code": "L1-09",
+    "core": ["geocentric-model", "heliocentric-model", "observation", "evidence", "model", "prediction"],
+    "supporting": ["telescope", "orbit", "spectroscopy", "spectrum", "redshift"],
+    "advanced": ["cmb", "independent-evidence"]
+  },
+  "multiwavelength-surveys-and-space-telescopes": {
+    "code": "L1-10",
+    "core": ["multiwavelength-astronomy", "sky-survey", "follow-up-observation", "space-telescope"],
+    "supporting": ["electromagnetic-spectrum", "wavelength", "visible-light", "infrared", "radio-wave", "x-ray", "field-of-view", "cadence", "transient"],
+    "advanced": ["catalog", "selection-effect"]
+  },
+  "one-phenomenon-three-methods": {
+    "code": "L1-11",
+    "core": ["transient", "observation", "theory", "simulation", "alternative-explanation"],
+    "supporting": ["data", "model", "prediction", "light-curve", "spectrum", "calibration", "uncertainty"],
+    "advanced": ["independent-evidence"]
+  },
+  "choosing-methods-for-astronomy-questions": {
+    "code": "L1-12",
+    "core": ["research-question", "observable", "signal", "measurement-plan"],
+    "supporting": ["detector", "telescope", "alternative-explanation", "uncertainty", "calibration", "follow-up-observation", "observation", "theory", "simulation"],
+    "advanced": ["reproducibility"]
   }
 }

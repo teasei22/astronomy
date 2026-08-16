@@ -60,7 +60,7 @@ type LessonMeta = {
 
 frontmatter を実行時スキーマで検証する。slug の重複、存在しない前提レッスン、未登録用語、取得日のない可変情報を CI で失敗させる。
 
-Course 1A・1BはLevel 1以降の基準実装とする。8章すべてにPredict First、Recall / Concept / Reasoning / Dataを含む5問以上の診断、独力演習と解答、`Required Now / Preview Only / Returns In`を必須とし、`lib/content.ts`でビルド時に検証する。専門語のCORE / SUPPORTING / ADVANCED分類とGlossary・診断topicの対応は`data/level-1-term-tiers.json`で監査する。
+Level 1のCourse 1A・1B・1Cは以降の基準実装とする。12章すべてにPredict First、Recall / Concept / Reasoning / Dataを含む5問以上の診断、独力演習と解答、`Required Now / Preview Only / Returns In`を必須とし、`lib/content.ts`でビルド時に検証する。専門語のCORE / SUPPORTING / ADVANCED分類とGlossary・診断topicの対応は`data/level-1-term-tiers.json`で監査する。
 
 本文の早い位置で`Required Now / Preview Only / Returns In`を示す。将来frontmatterへ構造化するときも、本文に学習要求が見えることを省略しない。
 

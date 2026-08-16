@@ -63,7 +63,7 @@ export const levels: LevelSummary[] = [
     courses: [
       { title: "天文学という科学", modules: ["全体地図", "観測・理論・計算"], lessonCodes: ["L1-01", "L1-02", "L1-03", "L1-04"] },
       { title: "対象別の専門分野", modules: ["惑星から恒星へ", "銀河から宇宙全体へ"], lessonCodes: ["L1-05", "L1-06", "L1-07", "L1-08"] },
-      { title: "証拠が宇宙観を変える", modules: ["観測史を証拠で読む", "問いから方法を選ぶ"] },
+      { title: "証拠が宇宙観を変える", modules: ["観測史を証拠で読む", "問いから方法を選ぶ"], lessonCodes: ["L1-09", "L1-10", "L1-11", "L1-12"] },
     ],
   },
   {
@@ -260,7 +260,10 @@ export const availableLessons: LessonSummary[] = [
   { slug: "stars-and-interstellar-medium", code: "L1-06", title: "太陽・恒星・星間物質", duration: 17, availability: "available" },
   { slug: "galaxies-and-cosmology", code: "L1-07", title: "天の川・銀河・宇宙論", duration: 17, availability: "available" },
   { slug: "high-energy-and-multi-messenger-astronomy", code: "L1-08", title: "高エネルギー・重力波・ニュートリノ", duration: 18, availability: "available" },
-  { slug: "history-of-evidence", code: "L1-09", title: "観測が宇宙観を変えた", duration: 19, availability: "available" },
+  { slug: "history-of-evidence", code: "L1-09", title: "観測が宇宙観を変えた", duration: 18, availability: "available" },
+  { slug: "multiwavelength-surveys-and-space-telescopes", code: "L1-10", title: "多波長観測・サーベイ・宇宙望遠鏡", duration: 18, availability: "available" },
+  { slug: "one-phenomenon-three-methods", code: "L1-11", title: "一つの現象を観測・理論・計算で調べる", duration: 18, availability: "available" },
+  { slug: "choosing-methods-for-astronomy-questions", code: "L1-12", title: "問いから信号・装置・専門分野を選ぶ", duration: 20, availability: "available" },
   { slug: "angular-measurement", code: "M2-01", title: "角度で宇宙を測る", duration: 50, availability: "available" },
   { slug: "parallax-distance", code: "L2-04", title: "年周視差から距離を測る", duration: 60, availability: "available" },
   { slug: "measurement-uncertainty", code: "M2-02", title: "測定誤差と推定", duration: 70, availability: "available" },

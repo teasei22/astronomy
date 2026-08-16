@@ -52,6 +52,10 @@ try {
     ["stars-and-interstellar-medium", "太陽・恒星・星間物質"],
     ["galaxies-and-cosmology", "天の川・銀河・宇宙論"],
     ["high-energy-and-multi-messenger-astronomy", "高エネルギー・重力波・ニュートリノ"],
+    ["history-of-evidence", "観測が宇宙観を変えた"],
+    ["multiwavelength-surveys-and-space-telescopes", "多波長観測・サーベイ・宇宙望遠鏡"],
+    ["one-phenomenon-three-methods", "一つの現象を観測・理論・計算で調べる"],
+    ["choosing-methods-for-astronomy-questions", "問いから信号・装置・専門分野を選ぶ"],
   ];
   for (const [slug, title] of standardizedLevel1Lessons) {
     await page.goto(`http://localhost:3000/learn/${slug}`, { waitUntil: "networkidle" });
@@ -84,6 +88,11 @@ try {
   await page.goto("http://localhost:3000/learn/high-energy-and-multi-messenger-astronomy", { waitUntil: "networkidle" });
   await page.getByText(/ブラックホールは信号ではなく研究する対象/).waitFor();
   assert.equal(await page.getByRole("link", { name: /観測が宇宙観を変えた/ }).getAttribute("href"), "/learn/history-of-evidence", "L1-08 should continue to L1-09");
+  await page.goto("http://localhost:3000/learn/history-of-evidence", { waitUntil: "networkidle" });
+  await page.getByText(/人物名と年号の暗記は求めない/).waitFor();
+  await page.goto("http://localhost:3000/learn/choosing-methods-for-astronomy-questions", { waitUntil: "networkidle" });
+  await page.getByRole("heading", { name: "Level 1総合チャレンジ", exact: true }).waitFor();
+  assert.equal(await page.getByRole("link", { name: /角度で宇宙を測る/ }).getAttribute("href"), "/learn/angular-measurement", "L1-12 should continue to the first Level 2 bridge");
   await page.goto("http://localhost:3000/learn/where-space-begins", { waitUntil: "networkidle" });
   assert.equal(await page.locator(".prose-lesson").getByText(/地球の重力によって、大気は地表付近ほど多く集まっています。/).count(), 1, "L0-01 should connect atmospheric density to gravity and pressure");
   const firstLessonGlossary = page.locator("section[aria-labelledby='lesson-glossary-title']");
@@ -191,17 +200,17 @@ try {
   await page.getByRole("link", { name: /光年/ }).first().waitFor();
 
   await page.goto("http://localhost:3000/roadmap", { waitUntil: "networkidle" });
-  await page.getByText("30 教材", { exact: true }).waitFor();
+  await page.getByText("33 教材", { exact: true }).waitFor();
   await page.getByText("6/6 公開", { exact: true }).first().waitFor();
   assert.equal(await page.getByText("6/6 公開", { exact: true }).count(), 3, "all three Level 0 courses should be complete");
   await page.getByText("公開 18", { exact: true }).waitFor();
   await page.locator("#level-1 > button").click();
   await page.getByText("Course 1A · 天文学という科学", { exact: true }).waitFor();
   await page.getByText("4/4 公開", { exact: true }).first().waitFor();
-  await page.getByText("公開 9", { exact: true }).waitFor();
+  await page.getByText("公開 12", { exact: true }).waitFor();
   await page.getByText("Course 1B · 対象別の専門分野", { exact: true }).waitFor();
-  assert.equal(await page.getByText("4/4 公開", { exact: true }).count(), 2, "Course 1A and Course 1B should both be complete");
   await page.getByText("Course 1C · 証拠が宇宙観を変える", { exact: true }).waitFor();
+  assert.equal(await page.getByText("4/4 公開", { exact: true }).count(), 3, "all three Level 1 courses should be complete");
   await page.locator("#level-4 > button").click();
   await page.getByText("HR図を読み、恒星の色・温度・光度・半径の関係を説明できる", { exact: true }).waitFor();
   await page.getByText("数学: 対数・指数関数・微分", { exact: true }).waitFor();

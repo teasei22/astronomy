@@ -112,7 +112,7 @@ L2〜6 + Python基礎
 
 ## 7. 制作順
 
-1. Level 1の12本を制作し、Course 1A・1Bの基準実装を作者通し履修する。
+1. Level 1の12本を制作し、Course 1A・1B・1Cの基準実装を作者通し履修する。
 2. Level 2はM2/P2 Bridgeと使用先Lessonを同じ制作単位として公開する。Bridgeだけ、または数式を使うLessonだけを先行公開しない。
 3. Level 3と4は、前提となるL2 Courseが公開・検証済みになった範囲から制作する。
 4. Level 5はA/B、C、D、E/Fを別Courseとしてレビューし、Course間で同じ物理説明を重複させず参照する。

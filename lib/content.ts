@@ -71,8 +71,7 @@ function validateMeta(data: unknown, file: string): LessonMeta {
 }
 
 function validateUniversityContract(meta: LessonMeta, sections: LessonSection[], file: string) {
-  const standardizedLevel1Modules = new Set(["天文学という科学", "対象別の専門分野"]);
-  const isStandardizedLevel1 = meta.level === 1 && standardizedLevel1Modules.has(meta.module);
+  const isStandardizedLevel1 = meta.level === 1;
   if (meta.level === 0 || isStandardizedLevel1) {
     const contractName = meta.level === 0 ? "Level 0" : "Level 1";
     const questions = quizzes[meta.slug] ?? [];
